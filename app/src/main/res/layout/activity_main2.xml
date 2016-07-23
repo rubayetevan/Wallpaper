@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.bdjobs.wallpaper.Main2Activity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="260dp"
+
+            android:orientation="vertical"
+            tools:context="com.bdjobs.wallpaper.Main2Activity">
+
+            <ImageView
+                android:background="#b6b6b6"
+                android:id="@+id/imgD"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:transitionName="@string/transition" />
+
+            <ImageButton
+                android:layout_margin="16dp"
+                android:id="@+id/backBTN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_arrow_back_black_24dp" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="11dp"
+                android:layout_marginTop="24dp"
+                android:text="Beautiful Sea in Bangladesh"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+            <RatingBar
+
+                android:id="@+id/myRatingBar"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:isIndicator="false"
+                android:numStars="5"
+                android:rating="3.5" />
+            />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="20dp"
+                android:padding="5dp"
+                android:paddingLeft="11dp"
+                android:paddingRight="11dp">
+
+                <Button
+                    android:id="@+id/downloadBTN"
+                    android:layout_width="0dp"
+                    android:layout_height="35dp"
+                    android:layout_marginRight="2.5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/border"
+                    android:onClick="OnClickDownload"
+                    android:text="Download"
+                    android:textColor="#00B67B" />
+
+                <Button
+                    android:id="@+id/wallpaperBTN"
+                    android:layout_width="0dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="2.5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/fill"
+                    android:onClick="OnClickSetWallpaper"
+                    android:text="Set As Wallpaper"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_margin="10dp"
+                android:layout_marginBottom="14dp"
+                android:layout_marginTop="14dp"
+                android:background="#e0e0e0" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="11dp"
+                android:layout_marginTop="10dp"
+                android:text="Image Description"
+                android:textColor="#424242"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="7dp"
+                android:layout_marginLeft="11dp"
+                android:text="The Bay of Bengal, the largest bay in the world,[3] forms the northeastern part of the Indian Ocean."
+                android:textColor="#757575" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Source:"
+                    android:textColor="#757575" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="http://www.pexels.com/"
+                    android:textColor="#5192ff" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</ScrollView>

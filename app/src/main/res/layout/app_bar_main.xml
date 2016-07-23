@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.bdjobs.wallpaper.MainActivity">
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/toolbar"
+        app:theme="@style/ToolbarColoredBackArrow"
+        app:popupTheme="@style/AppTheme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleTextColor="#FFFFFF"
+        android:minHeight="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"/>
+<HorizontalScrollView
+    android:layout_margin="5dp"
+    android:scrollbars="none"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:padding="2dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            android:layout_marginRight="2dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:textColor="#FFFFFF"
+            android:layout_margin="3dp"
+            android:background="@drawable/cat1_background"
+            android:text="Featured"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp" />
+        <Button
+            android:id="@+id/cat2BTN"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:scaleType="fitCenter"
+            android:textColor="#FFFFFF"
+            android:layout_margin="3dp"
+            android:background="@drawable/cat2_background"
+            android:text="Recent"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp" />
+        <Button
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:textColor="#FFFFFF"
+            android:layout_margin="3dp"
+            android:background="@drawable/cat3_background"
+            android:text="Daily Popular"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp" />
+        <Button
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:textColor="#FFFFFF"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:layout_margin="3dp"
+            android:background="@drawable/cat4_background"
+            android:text="Weekly Popular"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp" />
+        <Button
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:textColor="#FFFFFF"
+            android:layout_margin="3dp"
+            android:background="@drawable/filter"
+            android:text="Daily Popular"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp" />
+        <Button
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:textColor="#FFFFFF"
+            android:layout_margin="3dp"
+            android:background="@drawable/filter"
+            android:text="Daily Popular"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp" />
+        <Button
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:textColor="#FFFFFF"
+            android:layout_margin="3dp"
+            android:background="@drawable/filter"
+            android:text="Daily Popular"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp" />
+        <Button
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:textColor="#FFFFFF"
+            android:layout_margin="3dp"
+            android:background="@drawable/filter"
+            android:text="Daily Popular"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp" />
+        <Button
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:textColor="#FFFFFF"
+            android:layout_margin="3dp"
+            android:background="@drawable/filter"
+            android:text="Daily Popular"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp" />
+        <Button
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:textColor="#FFFFFF"
+            android:layout_margin="3dp"
+            android:background="@drawable/filter"
+            android:text="Daily Popular"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp" />
+    </LinearLayout>
+
+</HorizontalScrollView>
+    <TextView
+        android:textStyle="bold"
+        android:layout_marginLeft="11dp"
+        android:layout_marginBottom="12dp"
+        android:layout_margin="5dp"
+        android:textColor="#616161"
+        android:text="Featured Wallpaper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <include layout="@layout/content_main" />
+</LinearLayout>
+
+
+
+
+
+</android.support.design.widget.CoordinatorLayout>

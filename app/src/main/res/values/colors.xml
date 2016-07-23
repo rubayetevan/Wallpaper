@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#00B67B</color>
+    <color name="colorPrimaryDark">#039b69</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="toolbar_icon">#FFFFFF</color>
+    <color name="category_1">#00B67B</color>
+    <color name="category_2">#1e88e5</color>
+    <color name="category_3">#e64a19</color>
+    <color name="category_4">#ff8f00</color>
+    <color name="category_5">#FFFFFF</color>
+    <color name="category_6">#FFFFFF</color>
+    <color name="category_7">#FFFFFF</color>
+    <color name="category_8">#FFFFFF</color>
+    <color name="category_9">#FFFFFF</color>
+
+    <color name="black_overlay">#66000000</color>
+
+</resources>
