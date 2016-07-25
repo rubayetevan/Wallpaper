@@ -21,7 +21,7 @@
             tools:context="com.bdjobs.wallpaper.Main2Activity">
 
             <ImageView
-                android:background="@drawable/image_background1"
+                android:background="@drawable/image_background2"
                 android:id="@+id/imgD"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
