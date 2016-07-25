@@ -23,16 +23,19 @@
         android:minHeight="?attr/actionBarSize"
         android:background="?attr/colorPrimary"/>
 <HorizontalScrollView
+    android:layout_marginTop="5dp"
     android:layout_margin="5dp"
     android:scrollbars="none"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <LinearLayout
+        android:layout_marginTop="5dp"
         android:padding="2dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <Button
+            android:textSize="12sp"
             android:layout_marginRight="2dp"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
@@ -43,113 +46,48 @@
             android:layout_width="wrap_content"
             android:layout_height="30dp" />
         <Button
-            android:id="@+id/cat2BTN"
-            android:layout_marginLeft="3dp"
-            android:layout_marginRight="3dp"
+            android:textSize="12sp"
+            android:layout_marginRight="2dp"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:scaleType="fitCenter"
             android:textColor="#FFFFFF"
             android:layout_margin="3dp"
-            android:background="@drawable/cat2_background"
-            android:text="Recent"
+            android:background="@drawable/cat1_background"
+            android:text="editor's Choice"
             android:layout_width="wrap_content"
             android:layout_height="30dp" />
         <Button
-            android:layout_marginLeft="3dp"
-            android:layout_marginRight="3dp"
+            android:textSize="12sp"
+            android:layout_marginRight="2dp"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:textColor="#FFFFFF"
             android:layout_margin="3dp"
-            android:background="@drawable/cat3_background"
-            android:text="Daily Popular"
+            android:background="@drawable/cat1_background"
+            android:text="Premium"
             android:layout_width="wrap_content"
             android:layout_height="30dp" />
         <Button
-            android:layout_marginLeft="3dp"
-            android:layout_marginRight="3dp"
-            android:textColor="#FFFFFF"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:layout_margin="3dp"
-            android:background="@drawable/cat4_background"
-            android:text="Weekly Popular"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp" />
-        <Button
-            android:layout_marginLeft="3dp"
-            android:layout_marginRight="3dp"
+            android:textSize="12sp"
+            android:layout_marginRight="2dp"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:textColor="#FFFFFF"
             android:layout_margin="3dp"
-            android:background="@drawable/filter"
-            android:text="Daily Popular"
+            android:background="@drawable/cat1_background"
+            android:text="Popular"
             android:layout_width="wrap_content"
             android:layout_height="30dp" />
-        <Button
-            android:layout_marginLeft="3dp"
-            android:layout_marginRight="3dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:textColor="#FFFFFF"
-            android:layout_margin="3dp"
-            android:background="@drawable/filter"
-            android:text="Daily Popular"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp" />
-        <Button
-            android:layout_marginLeft="3dp"
-            android:layout_marginRight="3dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:textColor="#FFFFFF"
-            android:layout_margin="3dp"
-            android:background="@drawable/filter"
-            android:text="Daily Popular"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp" />
-        <Button
-            android:layout_marginLeft="3dp"
-            android:layout_marginRight="3dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:textColor="#FFFFFF"
-            android:layout_margin="3dp"
-            android:background="@drawable/filter"
-            android:text="Daily Popular"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp" />
-        <Button
-            android:layout_marginLeft="3dp"
-            android:layout_marginRight="3dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:textColor="#FFFFFF"
-            android:layout_margin="3dp"
-            android:background="@drawable/filter"
-            android:text="Daily Popular"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp" />
-        <Button
-            android:layout_marginLeft="3dp"
-            android:layout_marginRight="3dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:textColor="#FFFFFF"
-            android:layout_margin="3dp"
-            android:background="@drawable/filter"
-            android:text="Daily Popular"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp" />
+
     </LinearLayout>
 
 </HorizontalScrollView>
     <TextView
+        android:paddingTop="5dp"
+        android:textSize="16sp"
         android:textStyle="bold"
-        android:layout_marginLeft="11dp"
-        android:layout_marginBottom="12dp"
+        android:paddingLeft="16dp"
+        android:paddingBottom="10dp"
         android:layout_margin="5dp"
         android:textColor="#616161"
         android:text="Featured Wallpaper"

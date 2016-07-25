@@ -2,6 +2,7 @@ package com.bdjobs.wallpaper;
 
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -18,6 +19,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
@@ -26,10 +28,12 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -57,10 +61,13 @@ public class Main2Activity extends AppCompatActivity {
     ImageButton backBTN;
     final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
     private ProgressDialog pDialog;
+    private ProgressBar mProgress;
 
+    Dialog dialog;
 
     // Progress dialog type (0 - for Horizontal progress bar)
     public static final int progress_bar_type = 0;
+    public static final int dialog_bar_type = 1;
 
     final String PERMISSION = Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
@@ -73,6 +80,11 @@ public class Main2Activity extends AppCompatActivity {
         actionBar.hide();
         state = false;
 
+        LayoutInflater factory = LayoutInflater.from(Main2Activity.this);
+        View DialogView = factory.inflate(R.layout.layout, null);
+
+
+        //mProgress = (ProgressBar) DialogView.findViewById(R.id.progressBar);
         imageView = (ImageView) findViewById(R.id.imgD);
         button = (Button) findViewById(R.id.downloadBTN);
         button2 = (Button) findViewById(R.id.wallpaperBTN);
@@ -129,7 +141,17 @@ public class Main2Activity extends AppCompatActivity {
                 pDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
                 pDialog.setCancelable(false);
                 pDialog.show();
+                //pDialog.setContentView(R.layout.layout);
                 return pDialog;
+            case dialog_bar_type:
+                dialog = new Dialog(Main2Activity.this);
+                dialog.setContentView(R.layout.layout);
+                dialog.setTitle("Title...");
+                //mProgress.setMax(100);
+                //mProgress.setProgress(0);
+                dialog.setCancelable(false);
+                dialog.show();
+                return dialog;
             default:
                 return null;
         }
@@ -275,6 +297,8 @@ public class Main2Activity extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
             showDialog(progress_bar_type);
+
+
         }
 
         @Override
@@ -305,6 +329,7 @@ public class Main2Activity extends AppCompatActivity {
                     // After this onProgressUpdate will be called
                     publishProgress("" + (int) ((total * 100) / lenghtOfFile));
 
+
                     // writing data to file
                     output.write(data, 0, count);
 
@@ -328,9 +353,10 @@ public class Main2Activity extends AppCompatActivity {
         /**
          * Updating progress bar
          */
+        @Override
         protected void onProgressUpdate(String... progress) {
             // setting progress percentage
-            pDialog.setProgress(Integer.parseInt(progress[0]));
+           pDialog.setProgress(Integer.parseInt(progress[0]));
         }
 
         /**
@@ -340,8 +366,9 @@ public class Main2Activity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String file_url) {
             // dismiss the dialog after the file was downloaded
-            dismissDialog(progress_bar_type);
+            //dismissDialog(progress_bar_type);
             //button.setText("Set as Wallpaper");
+            dismissDialog(progress_bar_type);
             Toast.makeText(Main2Activity.this, "Downloaded", Toast.LENGTH_SHORT).show();
             state = true;
 
@@ -458,4 +485,6 @@ public class Main2Activity extends AppCompatActivity {
             return null;
         }
     }
+
+
 }

@@ -21,18 +21,23 @@
             tools:context="com.bdjobs.wallpaper.Main2Activity">
 
             <ImageView
-                android:background="#b6b6b6"
+                android:background="@drawable/image_background1"
                 android:id="@+id/imgD"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 android:transitionName="@string/transition" />
+            <View
+                android:background="@drawable/gradient"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
 
             <ImageButton
+
                 android:layout_margin="16dp"
                 android:id="@+id/backBTN"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:background="@drawable/ic_arrow_back_black_24dp" />
         </FrameLayout>
 
@@ -59,9 +64,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:isIndicator="false"
+                android:isIndicator="true"
                 android:numStars="5"
                 android:rating="3.5" />
+
             />
 
             <LinearLayout
@@ -143,7 +149,21 @@
 
 
             </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_margin="10dp"
+                android:layout_marginBottom="14dp"
+                android:layout_marginTop="14dp"
+                android:background="#e0e0e0" />
 
+            <View
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:background="#b6b6b6"
+                android:layout_width="280dp"
+                android:layout_height="250dp"/>
         </LinearLayout>
 
 
