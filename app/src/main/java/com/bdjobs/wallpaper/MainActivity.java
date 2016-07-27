@@ -43,17 +43,17 @@ public class MainActivity extends AppCompatActivity
     ArrayList<String> links = new ArrayList<>();
     private List<Wallpaper_> wallpapers = new ArrayList<Wallpaper_>();
     Button cat2BTN;
+    TextView categoryTV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        categoryTV = (TextView) findViewById(R.id.categoryTV);
 
 
         grid = (GridView) findViewById(R.id.grid);
         getServerData();
-
-
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -108,7 +108,22 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.abstractC) {
+            categoryTV.setText("Abstract Wallpaper");
+            wallpapers.clear();
+            API.Factory.getInstance().getAbstractWallpaper().enqueue(new Callback<Wallpaper>() {
+                @Override
+                public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
+                    wallpapers = response.body().getWallpaper();
+                    grid.setAdapter(new GridAdapter(MainActivity.this, wallpapers));
+                }
+
+                @Override
+                public void onFailure(Call<Wallpaper> call, Throwable t) {
+
+                }
+            });
+
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
 
@@ -124,7 +139,8 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void getServerData() {
-        API.Factory.getInstance().getData().enqueue(new Callback<Wallpaper>() {
+        categoryTV.setText("Featured Wallpaper");
+        API.Factory.getInstance().getFeaturedWallpaper().enqueue(new Callback<Wallpaper>() {
             @Override
             public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
                 wallpapers = response.body().getWallpaper();
@@ -138,6 +154,24 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
+    public void getFeaturedWallpaper(View view) {
+        categoryTV.setText("Featured Wallpaper");
+        wallpapers.clear();
+        API.Factory.getInstance().getFeaturedWallpaper().enqueue(new Callback<Wallpaper>() {
+            @Override
+            public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
+                wallpapers = response.body().getWallpaper();
+                grid.setAdapter(new GridAdapter(MainActivity.this, wallpapers));
+            }
+
+            @Override
+            public void onFailure(Call<Wallpaper> call, Throwable t) {
+
+            }
+        });
+    }
+
+
     private class GridAdapter extends BaseAdapter {
 
         Context context;
@@ -146,7 +180,7 @@ public class MainActivity extends AppCompatActivity
 
         public GridAdapter(Context context, List<Wallpaper_> wallpapers) {
             this.context = context;
-            this.wallpapers=wallpapers;
+            this.wallpapers = wallpapers;
         }
 
         @Override

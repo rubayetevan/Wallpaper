@@ -14,7 +14,24 @@ public interface API {
     //https://www.dropbox.com/s/j5bbbdxe3yl1qc8/wallpaper.json?dl=0
 
     @GET("0u50az92julliam/FetauredWallpaper.json?raw=1")
-    Call<Wallpaper> getData();
+    Call<Wallpaper> getFeaturedWallpaper();
+
+    @GET("3jlrhpqsct8bghg/AbstractWallpaper.json?raw=1")
+    Call<Wallpaper> getAbstractWallpaper();
+
+
+    @GET("0u50az92julliam/FetauredWallpaper.json?raw=1")
+    Call<Wallpaper> getAnimalandBirdsWallpaper();
+
+    @GET("0u50az92julliam/FetauredWallpaper.json?raw=1")
+    Call<Wallpaper> getArchitectureWallpaper();
+
+    @GET("0u50az92julliam/FetauredWallpaper.json?raw=1")
+    Call<Wallpaper> getBeachWallpaper();
+
+
+    @GET("0u50az92julliam/FetauredWallpaper.json?raw=1")
+    Call<Wallpaper> getBikeWallpaper();
 
     class Factory {
         public static API api;

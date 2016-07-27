@@ -116,6 +116,17 @@ public class Main2Activity extends AppCompatActivity {
 
 
 
+
+        imgSourceTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(imgSource));
+                startActivity(i);
+            }
+        });
+
+
         Glide.with(this).load(link).into(imageView);
 
         Rqpr();
