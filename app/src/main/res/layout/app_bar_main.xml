@@ -6,99 +6,103 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context="com.bdjobs.wallpaper.MainActivity">
-<LinearLayout
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <android.support.v7.widget.Toolbar
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/toolbar"
-        app:theme="@style/ToolbarColoredBackArrow"
-        app:popupTheme="@style/AppTheme"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:titleTextColor="#FFFFFF"
-        android:minHeight="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"/>
-<HorizontalScrollView
-    android:layout_marginTop="5dp"
-    android:layout_margin="5dp"
-    android:scrollbars="none"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
     <LinearLayout
-        android:layout_marginTop="5dp"
-        android:padding="2dp"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <Button
-            android:textSize="12sp"
-            android:layout_marginRight="2dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:textColor="#FFFFFF"
-            android:layout_margin="3dp"
-            android:background="@drawable/cat1_background"
-            android:text="Featured"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp" />
-        <Button
-            android:textSize="12sp"
-            android:layout_marginRight="2dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:textColor="#FFFFFF"
-            android:layout_margin="3dp"
-            android:background="@drawable/cat1_background"
-            android:text="editor's Choice"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp" />
-        <Button
-            android:textSize="12sp"
-            android:layout_marginRight="2dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:textColor="#FFFFFF"
-            android:layout_margin="3dp"
-            android:background="@drawable/cat1_background"
-            android:text="Premium"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp" />
-        <Button
-            android:textSize="12sp"
-            android:layout_marginRight="2dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:textColor="#FFFFFF"
-            android:layout_margin="3dp"
-            android:background="@drawable/cat1_background"
-            android:text="Popular"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
+        <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            app:popupTheme="@style/AppTheme"
+            app:theme="@style/ToolbarColoredBackArrow"
+            app:titleTextColor="#FFFFFF" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginTop="5dp"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                android:padding="2dp">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_margin="3dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@drawable/cat1_background"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:text="Featured"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_margin="3dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@drawable/cat1_background"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:text="editor's Choice"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_margin="3dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@drawable/cat1_background"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:text="Premium"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_margin="3dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@drawable/cat1_background"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:text="Popular"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:paddingBottom="8dp"
+            android:paddingLeft="16dp"
+            android:paddingTop="5dp"
+            android:text="Featured Wallpaper"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="normal" />
+
+        <include layout="@layout/content_main" />
     </LinearLayout>
-
-</HorizontalScrollView>
-    <TextView
-        android:paddingTop="5dp"
-        android:textSize="20sp"
-        android:textStyle="normal"
-        android:paddingLeft="16dp"
-        android:paddingBottom="8dp"
-        android:layout_margin="5dp"
-        android:textColor="#000000"
-        android:text="Featured Wallpaper"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <include layout="@layout/content_main" />
-</LinearLayout>
-
-
-
 
 
 </android.support.design.widget.CoordinatorLayout>

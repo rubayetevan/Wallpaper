@@ -128,11 +128,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
                 wallpapers = response.body().getWallpaper();
-
-                for (int i = 0; i < wallpapers.size(); i++) {
-                    links.add(i, wallpapers.get(i).getPicurl());
-                }
-                grid.setAdapter(new GridAdapter(MainActivity.this, links));
+                grid.setAdapter(new GridAdapter(MainActivity.this, wallpapers));
             }
 
             @Override
@@ -146,15 +142,16 @@ public class MainActivity extends AppCompatActivity
 
         Context context;
         ArrayList<String> links = new ArrayList<>();
+        List<Wallpaper_> wallpapers = new ArrayList<Wallpaper_>();
 
-        public GridAdapter(Context context, ArrayList<String> links) {
+        public GridAdapter(Context context, List<Wallpaper_> wallpapers) {
             this.context = context;
-            this.links = links;
+            this.wallpapers=wallpapers;
         }
 
         @Override
         public int getCount() {
-            return links.size();
+            return wallpapers.size();
         }
 
         @Override
@@ -168,35 +165,36 @@ public class MainActivity extends AppCompatActivity
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(final int position, View convertView, ViewGroup parent) {
             final Holder holder = new Holder();
 
             convertView = getLayoutInflater().inflate(R.layout.grid_item, parent, false);
             holder.img = (ImageView) convertView.findViewById(R.id.imgv);
 
+            final String ln = wallpapers.get(position).getPicurl();
 
             Glide.with(context)
-                    .load(links.get(position))
+                    .load(ln)
                     .override(200, 200)
                     .into(holder.img);
-
-            final String ln = links.get(position);
-
             holder.img.setOnClickListener(new View.OnClickListener() {
                 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
                 @Override
                 public void onClick(View v) {
+                    Intent intent = new Intent(context, Main2Activity.class);
+
+                    intent.putExtra("link", ln);
+                    intent.putExtra("rating", wallpapers.get(position).getRating());
+                    intent.putExtra("title", wallpapers.get(position).getTitle());
+                    intent.putExtra("description", wallpapers.get(position).getDescription());
+                    intent.putExtra("source", wallpapers.get(position).getSource());
+                    intent.putExtra("category", wallpapers.get(position).getCategory());
 
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-
-
-                        Intent intent = new Intent(context, Main2Activity.class);
-                        intent.putExtra("link", ln);
                         Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, holder.img, holder.img.getTransitionName()).toBundle();
                         startActivity(intent, bundle);
                     } else {
-                        Intent intent = new Intent(context, Main2Activity.class);
-                        intent.putExtra("link", ln);
+
                         startActivity(intent);
                     }
                 }

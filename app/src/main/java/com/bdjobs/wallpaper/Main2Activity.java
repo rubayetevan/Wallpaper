@@ -34,6 +34,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -51,7 +53,7 @@ import java.util.concurrent.ExecutionException;
 
 public class Main2Activity extends AppCompatActivity {
     ImageView imageView;
-    String link;
+    String link,imgTitle,imgDescription,imgSource,imgRating,imgCategory;
     Bitmap theBitmap;
     String loc;
     String fname = "";
@@ -62,8 +64,10 @@ public class Main2Activity extends AppCompatActivity {
     final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
     private ProgressDialog pDialog;
     private ProgressBar mProgress;
-
+    RatingBar imgRatingBar;
     Dialog dialog;
+
+    TextView imgTitleTV,imgDescriptionTV,imgSourceTV;
 
     // Progress dialog type (0 - for Horizontal progress bar)
     public static final int progress_bar_type = 0;
@@ -85,6 +89,12 @@ public class Main2Activity extends AppCompatActivity {
 
 
         //mProgress = (ProgressBar) DialogView.findViewById(R.id.progressBar);
+
+        imgTitleTV = (TextView) findViewById(R.id.imgTitleTV);
+        imgDescriptionTV = (TextView) findViewById(R.id.imgDescriptionTV);
+        imgSourceTV = (TextView) findViewById(R.id.imgSourceTV);
+        imgRatingBar = (RatingBar) findViewById(R.id.imgRatingBar);
+
         imageView = (ImageView) findViewById(R.id.imgD);
         button = (Button) findViewById(R.id.downloadBTN);
         button2 = (Button) findViewById(R.id.wallpaperBTN);
@@ -98,6 +108,13 @@ public class Main2Activity extends AppCompatActivity {
 
         Intent intent = getIntent();
         link = intent.getStringExtra("link");
+        imgTitle = intent.getStringExtra("title");
+        imgDescription = intent.getStringExtra("description");
+        imgSource = intent.getStringExtra("source");
+        imgRating = intent.getStringExtra("rating");
+        imgCategory = intent.getStringExtra("category");
+
+
 
         Glide.with(this).load(link).into(imageView);
 
@@ -111,6 +128,11 @@ public class Main2Activity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        imgTitleTV.setText(imgTitle);
+        imgDescriptionTV.setText(imgDescription);
+        imgSourceTV.setText(imgSource);
+        imgRatingBar.setRating(Float.valueOf(imgRating));
 
 
         SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);

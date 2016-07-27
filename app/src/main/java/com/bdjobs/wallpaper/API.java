@@ -13,7 +13,7 @@ public interface API {
 
     //https://www.dropbox.com/s/j5bbbdxe3yl1qc8/wallpaper.json?dl=0
 
-    @GET("j5bbbdxe3yl1qc8/wallpaper.json?raw=1")
+    @GET("0u50az92julliam/FetauredWallpaper.json?raw=1")
     Call<Wallpaper> getData();
 
     class Factory {
