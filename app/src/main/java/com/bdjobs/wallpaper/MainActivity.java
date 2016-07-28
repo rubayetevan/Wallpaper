@@ -36,13 +36,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     GridView grid;
-    ArrayList<String> links = new ArrayList<>();
     private List<Wallpaper_> wallpapers = new ArrayList<Wallpaper_>();
-    Button cat2BTN;
     TextView categoryTV;
 
     @Override

@@ -39,6 +39,55 @@
 
             android:icon="@drawable/ic_menu_manage"
             android:title="Flowers" />
+
+        <item
+
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Food" />
+        <item
+
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Funny" />
+        <item
+
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Games" />
+        <item
+
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Inspirational" />
+        <item
+
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Landscape Photos" />
+        <item
+
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Macro" />
+        <item
+
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Minimal" />
+        <item
+
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Movies" />
+        <item
+
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Nature" />
+        <item
+
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Photography" />
+        <item
+
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Space" />
+        <item
+
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Technology Photos" />
     </group>
 
     <!--<item android:title="Communicate">
