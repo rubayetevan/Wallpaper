@@ -51,6 +51,7 @@
                     android:textSize="12sp" />
 
                 <Button
+                    android:onClick="getEditorWallpaper"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:layout_margin="3dp"
@@ -62,19 +63,9 @@
                     android:textColor="#FFFFFF"
                     android:textSize="12sp" />
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_margin="3dp"
-                    android:layout_marginRight="2dp"
-                    android:background="@drawable/cat1_background"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
-                    android:text="Premium"
-                    android:textColor="#FFFFFF"
-                    android:textSize="12sp" />
 
                 <Button
+                    android:onClick="getPopularWallpaper"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:layout_margin="3dp"

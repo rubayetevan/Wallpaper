@@ -7,75 +7,75 @@
             android:icon="@drawable/abstractc"
             android:title="Abstract" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/animals"
             android:icon="@drawable/animals"
             android:title="Animals" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/architecture"
             android:icon="@drawable/architecture"
             android:title="Architecture" />
         <item
-
+            android:id="@+id/beach"
             android:icon="@drawable/beach"
             android:title="Beach" />
         <item
-
+            android:id="@+id/bike"
             android:icon="@drawable/bike"
             android:title="Bikes" />
         <item
-
+            android:id="@+id/business"
             android:icon="@drawable/business"
             android:title="Business Photos" />
         <item
-
+            android:id="@+id/city"
             android:icon="@drawable/city"
             android:title="City" />
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/creative"
             android:icon="@drawable/creative"
             android:title="Creative Graphics" />
 
         <item
-
+            android:id="@+id/flowers"
             android:icon="@drawable/flowers"
             android:title="Flowers" />
 
         <item
-
+            android:id="@+id/food"
             android:icon="@drawable/food"
             android:title="Food" />
         <item
-
+            android:id="@+id/funny"
             android:icon="@drawable/funny"
             android:title="Funny" />
         <item
-
+            android:id="@+id/games"
             android:icon="@drawable/games"
             android:title="Games" />
         <item
-
+            android:id="@+id/inspiraton"
             android:icon="@drawable/inspiraton"
             android:title="Inspirational" />
         <item
-
+            android:id="@+id/landscape"
             android:icon="@drawable/landscape"
             android:title="Landscape Photos" />
         <item
-
+            android:id="@+id/macro"
             android:icon="@drawable/macro"
             android:title="Macro" />
         <item
-
+            android:id="@+id/minimal"
             android:icon="@drawable/minimal"
             android:title="Minimal" />
 
         <item
-
+            android:id="@+id/nature"
             android:icon="@drawable/nature"
             android:title="Nature" />
 
         <item
-
+            android:id="@+id/space"
             android:icon="@drawable/space"
             android:title="Space" />
 

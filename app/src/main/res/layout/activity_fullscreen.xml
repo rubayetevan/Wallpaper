@@ -9,7 +9,7 @@
          is needed to present your content, e.g. VideoView, SurfaceView,
          TextureView, etc. -->
     <ImageView
-
+        android:transitionName="@string/transition"
         android:scaleType="centerCrop"
         android:id="@+id/fullscreen_content"
         android:layout_width="match_parent"

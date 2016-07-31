@@ -3,6 +3,7 @@ package com.bdjobs.wallpaper;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -18,6 +19,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
@@ -136,7 +138,15 @@ public class Main2Activity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(Main2Activity.this, FullscreenActivity.class);
                 intent.putExtra("link", link);
-                startActivity(intent);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(Main2Activity.this, imageView, imageView.getTransitionName()).toBundle();
+                    startActivity(intent, bundle);
+                } else {
+
+                    startActivity(intent);
+                }
+
             }
         });
 

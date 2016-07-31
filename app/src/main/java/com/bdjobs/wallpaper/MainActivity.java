@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     GridView grid;
     private List<Wallpaper_> wallpapers = new ArrayList<Wallpaper_>();
     TextView categoryTV;
+    int selected_item = 0;
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setItemIconTintList(null);
     }
@@ -107,6 +109,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.abstractC) {
+            selected_item=0;
             categoryTV.setText("Abstract Wallpaper");
             wallpapers.clear();
             API.Factory.getInstance().getAbstractWallpaper().enqueue(new Callback<Wallpaper>() {
@@ -121,15 +124,298 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 }
             });
-
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
         }
+        else if (id == R.id.animals) {
+            selected_item=1;
+            categoryTV.setText("Animals Wallpaper");
+            wallpapers.clear();
+            API.Factory.getInstance().getAnimalandBirdsWallpaper().enqueue(new Callback<Wallpaper>() {
+                @Override
+                public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
+                    wallpapers = response.body().getWallpaper();
+                    grid.setAdapter(new GridAdapter(MainActivity.this, wallpapers));
+                }
+
+                @Override
+                public void onFailure(Call<Wallpaper> call, Throwable t) {
+
+                }
+            });
+        }
+        else if (id == R.id.architecture) {
+            selected_item=2;
+            categoryTV.setText("Architecture Wallpaper");
+            wallpapers.clear();
+            API.Factory.getInstance().getArchitectureWallpaper().enqueue(new Callback<Wallpaper>() {
+                @Override
+                public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
+                    wallpapers = response.body().getWallpaper();
+                    grid.setAdapter(new GridAdapter(MainActivity.this, wallpapers));
+                }
+
+                @Override
+                public void onFailure(Call<Wallpaper> call, Throwable t) {
+
+                }
+            });
+        }
+        else if (id == R.id.beach) {
+            selected_item=3;
+            categoryTV.setText("Beach Wallpaper");
+            wallpapers.clear();
+            API.Factory.getInstance().getBeachWallpaper().enqueue(new Callback<Wallpaper>() {
+                @Override
+                public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
+                    wallpapers = response.body().getWallpaper();
+                    grid.setAdapter(new GridAdapter(MainActivity.this, wallpapers));
+                }
+
+                @Override
+                public void onFailure(Call<Wallpaper> call, Throwable t) {
+
+                }
+            });
+        }
+        else if (id == R.id.bike) {
+            selected_item=4;
+            categoryTV.setText("Bikes Wallpaper");
+            wallpapers.clear();
+            API.Factory.getInstance().getBikeWallpaper().enqueue(new Callback<Wallpaper>() {
+                @Override
+                public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
+                    wallpapers = response.body().getWallpaper();
+                    grid.setAdapter(new GridAdapter(MainActivity.this, wallpapers));
+                }
+
+                @Override
+                public void onFailure(Call<Wallpaper> call, Throwable t) {
+
+                }
+            });
+        }
+        else if (id == R.id.business) {
+            selected_item=5;
+            categoryTV.setText("Business Wallpaper");
+            wallpapers.clear();
+            API.Factory.getInstance().getBusinessWallpaper().enqueue(new Callback<Wallpaper>() {
+                @Override
+                public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
+                    wallpapers = response.body().getWallpaper();
+                    grid.setAdapter(new GridAdapter(MainActivity.this, wallpapers));
+                }
+
+                @Override
+                public void onFailure(Call<Wallpaper> call, Throwable t) {
+
+                }
+            });
+        }
+        else if (id == R.id.city) {
+            selected_item=6;
+            categoryTV.setText("City Wallpaper");
+            wallpapers.clear();
+            API.Factory.getInstance().getCityWallpaper().enqueue(new Callback<Wallpaper>() {
+                @Override
+                public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
+                    wallpapers = response.body().getWallpaper();
+                    grid.setAdapter(new GridAdapter(MainActivity.this, wallpapers));
+                }
+
+                @Override
+                public void onFailure(Call<Wallpaper> call, Throwable t) {
+
+                }
+            });
+        }
+        else if (id == R.id.creative) {
+            selected_item=7;
+            categoryTV.setText("Creative Wallpaper");
+            wallpapers.clear();
+            API.Factory.getInstance().getCreativeWallpaper().enqueue(new Callback<Wallpaper>() {
+                @Override
+                public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
+                    wallpapers = response.body().getWallpaper();
+                    grid.setAdapter(new GridAdapter(MainActivity.this, wallpapers));
+                }
+
+                @Override
+                public void onFailure(Call<Wallpaper> call, Throwable t) {
+
+                }
+            });
+        }
+        else if (id == R.id.flowers) {
+            selected_item=8;
+            categoryTV.setText("Flower Wallpaper");
+            wallpapers.clear();
+            API.Factory.getInstance().getFlowersWallpaper().enqueue(new Callback<Wallpaper>() {
+                @Override
+                public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
+                    wallpapers = response.body().getWallpaper();
+                    grid.setAdapter(new GridAdapter(MainActivity.this, wallpapers));
+                }
+
+                @Override
+                public void onFailure(Call<Wallpaper> call, Throwable t) {
+
+                }
+            });
+        }
+        else if (id == R.id.food) {
+            selected_item=9;
+            categoryTV.setText("Food Wallpaper");
+            wallpapers.clear();
+            API.Factory.getInstance().getFoodWallpaper().enqueue(new Callback<Wallpaper>() {
+                @Override
+                public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
+                    wallpapers = response.body().getWallpaper();
+                    grid.setAdapter(new GridAdapter(MainActivity.this, wallpapers));
+                }
+
+                @Override
+                public void onFailure(Call<Wallpaper> call, Throwable t) {
+
+                }
+            });
+        }
+        else if (id == R.id.funny) {
+            selected_item=10;
+            categoryTV.setText("Funny Wallpaper");
+            wallpapers.clear();
+            API.Factory.getInstance().getFunnyWallpaper().enqueue(new Callback<Wallpaper>() {
+                @Override
+                public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
+                    wallpapers = response.body().getWallpaper();
+                    grid.setAdapter(new GridAdapter(MainActivity.this, wallpapers));
+                }
+
+                @Override
+                public void onFailure(Call<Wallpaper> call, Throwable t) {
+
+                }
+            });
+        }
+        else if (id == R.id.games) {
+            selected_item=11;
+            categoryTV.setText("Games Wallpaper");
+            wallpapers.clear();
+            API.Factory.getInstance().getGamesWallpaper().enqueue(new Callback<Wallpaper>() {
+                @Override
+                public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
+                    wallpapers = response.body().getWallpaper();
+                    grid.setAdapter(new GridAdapter(MainActivity.this, wallpapers));
+                }
+
+                @Override
+                public void onFailure(Call<Wallpaper> call, Throwable t) {
+
+                }
+            });
+        }
+        else if (id == R.id.inspiraton) {
+            selected_item=12;
+            categoryTV.setText("Inspirational Wallpaper");
+            wallpapers.clear();
+            API.Factory.getInstance().getInspirationalWallpaper().enqueue(new Callback<Wallpaper>() {
+                @Override
+                public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
+                    wallpapers = response.body().getWallpaper();
+                    grid.setAdapter(new GridAdapter(MainActivity.this, wallpapers));
+                }
+
+                @Override
+                public void onFailure(Call<Wallpaper> call, Throwable t) {
+
+                }
+            });
+        }
+        else if (id == R.id.landscape) {
+            selected_item=13;
+            categoryTV.setText("Landscape Wallpaper");
+            wallpapers.clear();
+            API.Factory.getInstance().getLandscapeWallpaper().enqueue(new Callback<Wallpaper>() {
+                @Override
+                public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
+                    wallpapers = response.body().getWallpaper();
+                    grid.setAdapter(new GridAdapter(MainActivity.this, wallpapers));
+                }
+
+                @Override
+                public void onFailure(Call<Wallpaper> call, Throwable t) {
+
+                }
+            });
+        }
+        else if (id == R.id.macro) {
+            selected_item=14;
+            categoryTV.setText("Macro Wallpaper");
+            wallpapers.clear();
+            API.Factory.getInstance().getMacroWallpaper().enqueue(new Callback<Wallpaper>() {
+                @Override
+                public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
+                    wallpapers = response.body().getWallpaper();
+                    grid.setAdapter(new GridAdapter(MainActivity.this, wallpapers));
+                }
+
+                @Override
+                public void onFailure(Call<Wallpaper> call, Throwable t) {
+
+                }
+            });
+        }
+        else if (id == R.id.minimal) {
+            selected_item=15;
+            categoryTV.setText("Minimal Wallpaper");
+            wallpapers.clear();
+            API.Factory.getInstance().getMinimalWallpaper().enqueue(new Callback<Wallpaper>() {
+                @Override
+                public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
+                    wallpapers = response.body().getWallpaper();
+                    grid.setAdapter(new GridAdapter(MainActivity.this, wallpapers));
+                }
+
+                @Override
+                public void onFailure(Call<Wallpaper> call, Throwable t) {
+
+                }
+            });
+        }
+        else if (id == R.id.nature) {
+            selected_item=16;
+            categoryTV.setText("Nature Wallpaper");
+            wallpapers.clear();
+            API.Factory.getInstance().getNatureWallpaper().enqueue(new Callback<Wallpaper>() {
+                @Override
+                public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
+                    wallpapers = response.body().getWallpaper();
+                    grid.setAdapter(new GridAdapter(MainActivity.this, wallpapers));
+                }
+
+                @Override
+                public void onFailure(Call<Wallpaper> call, Throwable t) {
+
+                }
+            });
+        }
+        else if (id == R.id.space) {
+            selected_item=17;
+            categoryTV.setText("Space Wallpaper");
+            wallpapers.clear();
+            API.Factory.getInstance().getSpaceWallpaper().enqueue(new Callback<Wallpaper>() {
+                @Override
+                public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
+                    wallpapers = response.body().getWallpaper();
+                    grid.setAdapter(new GridAdapter(MainActivity.this, wallpapers));
+                }
+
+                @Override
+                public void onFailure(Call<Wallpaper> call, Throwable t) {
+
+                }
+            });
+        }
+
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -153,6 +439,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void getFeaturedWallpaper(View view) {
+
+        navigationView.getMenu().getItem(selected_item).setChecked(false);
         categoryTV.setText("Featured Wallpaper");
         wallpapers.clear();
         API.Factory.getInstance().getFeaturedWallpaper().enqueue(new Callback<Wallpaper>() {
@@ -169,6 +457,43 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
     }
 
+    public void getEditorWallpaper(View view) {
+
+        navigationView.getMenu().getItem(selected_item).setChecked(false);
+        categoryTV.setText("Editor's Choice");
+        wallpapers.clear();
+        API.Factory.getInstance().getEditorWallpaper().enqueue(new Callback<Wallpaper>() {
+            @Override
+            public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
+                wallpapers = response.body().getWallpaper();
+                grid.setAdapter(new GridAdapter(MainActivity.this, wallpapers));
+            }
+
+            @Override
+            public void onFailure(Call<Wallpaper> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public void getPopularWallpaper(View view) {
+
+        navigationView.getMenu().getItem(selected_item).setChecked(false);
+        categoryTV.setText("Popular Wallpaper");
+        wallpapers.clear();
+        API.Factory.getInstance().getPopularWallpaper().enqueue(new Callback<Wallpaper>() {
+            @Override
+            public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
+                wallpapers = response.body().getWallpaper();
+                grid.setAdapter(new GridAdapter(MainActivity.this, wallpapers));
+            }
+
+            @Override
+            public void onFailure(Call<Wallpaper> call, Throwable t) {
+
+            }
+        });
+    }
 
     private class GridAdapter extends BaseAdapter {
 
