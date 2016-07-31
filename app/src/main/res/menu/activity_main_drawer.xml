@@ -4,90 +4,81 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/abstractC"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/abstractc"
             android:title="Abstract" />
         <item
             android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Animal and Birds" />
+            android:icon="@drawable/animals"
+            android:title="Animals" />
         <item
             android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/architecture"
             android:title="Architecture" />
         <item
 
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/beach"
             android:title="Beach" />
         <item
 
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/bike"
             android:title="Bikes" />
         <item
 
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/business"
             android:title="Business Photos" />
         <item
 
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/city"
             android:title="City" />
         <item
             android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/creative"
             android:title="Creative Graphics" />
 
         <item
 
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/flowers"
             android:title="Flowers" />
 
         <item
 
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/food"
             android:title="Food" />
         <item
 
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/funny"
             android:title="Funny" />
         <item
 
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/games"
             android:title="Games" />
         <item
 
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/inspiraton"
             android:title="Inspirational" />
         <item
 
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/landscape"
             android:title="Landscape Photos" />
         <item
 
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/macro"
             android:title="Macro" />
         <item
 
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/minimal"
             android:title="Minimal" />
+
         <item
 
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Movies" />
-        <item
-
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/nature"
             android:title="Nature" />
+
         <item
 
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Photography" />
-        <item
-
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/space"
             android:title="Space" />
-        <item
 
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Technology Photos" />
     </group>
 
     <!--<item android:title="Communicate">
