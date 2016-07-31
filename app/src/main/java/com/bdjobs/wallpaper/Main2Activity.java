@@ -62,7 +62,7 @@ public class Main2Activity extends AppCompatActivity {
     boolean state;
     private ProgressDialog progress;
     Button button,button2;
-    ImageButton backBTN;
+    View backBTN;
     final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
     private ProgressDialog pDialog;
     private ProgressBar mProgress;
@@ -100,7 +100,7 @@ public class Main2Activity extends AppCompatActivity {
         imageView = (ImageView) findViewById(R.id.imgD);
         button = (Button) findViewById(R.id.downloadBTN);
         button2 = (Button) findViewById(R.id.wallpaperBTN);
-        backBTN = (ImageButton) findViewById(R.id.backBTN);
+        backBTN = (View) findViewById(R.id.backBTN);
         backBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

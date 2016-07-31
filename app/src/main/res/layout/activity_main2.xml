@@ -16,7 +16,6 @@
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="260dp"
-
             android:orientation="vertical"
             tools:context="com.bdjobs.wallpaper.Main2Activity">
 
@@ -33,12 +32,18 @@
                 android:layout_height="match_parent"/>
 
             <ImageButton
-
                 android:layout_margin="16dp"
-                android:id="@+id/backBTN"
+
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:background="@drawable/ic_arrow_back_black_24dp" />
+            <View
+                android:id="@+id/backBTN"
+                android:layout_marginLeft="5dp"
+               android:layout_marginTop="5dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"/>
+
         </FrameLayout>
 
         <LinearLayout
