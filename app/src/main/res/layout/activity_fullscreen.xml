@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/image_background3"
+    android:background="@drawable/spinner_720_1280"
     tools:context="com.bdjobs.wallpaper.FullscreenActivity">
 
     <!-- The primary full-screen view. This can be replaced with whatever view
