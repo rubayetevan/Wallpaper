@@ -28,6 +28,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.crash.FirebaseCrash;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,11 +45,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     TextView categoryTV;
     int selected_item = 0;
     NavigationView navigationView;
-
+    private FirebaseAnalytics mFirebaseAnalytics;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         categoryTV = (TextView) findViewById(R.id.categoryTV);
 
 
@@ -121,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 @Override
                 public void onFailure(Call<Wallpaper> call, Throwable t) {
-
+                    FirebaseCrash.report(new Exception(t.getMessage()));
                 }
             });
         }
@@ -138,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 @Override
                 public void onFailure(Call<Wallpaper> call, Throwable t) {
-
+                    FirebaseCrash.report(new Exception(t.getMessage()));
                 }
             });
         }
@@ -155,7 +158,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 @Override
                 public void onFailure(Call<Wallpaper> call, Throwable t) {
-
+                    FirebaseCrash.report(new Exception(t.getMessage()));
                 }
             });
         }
@@ -172,7 +175,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 @Override
                 public void onFailure(Call<Wallpaper> call, Throwable t) {
-
+                    FirebaseCrash.report(new Exception(t.getMessage()));
                 }
             });
         }
@@ -189,7 +192,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 @Override
                 public void onFailure(Call<Wallpaper> call, Throwable t) {
-
+                    FirebaseCrash.report(new Exception(t.getMessage()));
                 }
             });
         }
@@ -206,7 +209,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 @Override
                 public void onFailure(Call<Wallpaper> call, Throwable t) {
-
+                    FirebaseCrash.report(new Exception(t.getMessage()));
                 }
             });
         }
@@ -223,7 +226,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 @Override
                 public void onFailure(Call<Wallpaper> call, Throwable t) {
-
+                    FirebaseCrash.report(new Exception(t.getMessage()));
                 }
             });
         }
@@ -240,7 +243,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 @Override
                 public void onFailure(Call<Wallpaper> call, Throwable t) {
-
+                    FirebaseCrash.report(new Exception(t.getMessage()));
                 }
             });
         }
@@ -257,7 +260,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 @Override
                 public void onFailure(Call<Wallpaper> call, Throwable t) {
-
+                    FirebaseCrash.report(new Exception(t.getMessage()));
                 }
             });
         }
@@ -274,7 +277,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 @Override
                 public void onFailure(Call<Wallpaper> call, Throwable t) {
-
+                    FirebaseCrash.report(new Exception(t.getMessage()));
                 }
             });
         }
@@ -291,7 +294,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 @Override
                 public void onFailure(Call<Wallpaper> call, Throwable t) {
-
+                    FirebaseCrash.report(new Exception(t.getMessage()));
                 }
             });
         }
@@ -308,7 +311,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 @Override
                 public void onFailure(Call<Wallpaper> call, Throwable t) {
-
+                    FirebaseCrash.report(new Exception(t.getMessage()));
                 }
             });
         }
@@ -325,7 +328,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 @Override
                 public void onFailure(Call<Wallpaper> call, Throwable t) {
-
+                    FirebaseCrash.report(new Exception(t.getMessage()));
                 }
             });
         }
@@ -342,7 +345,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 @Override
                 public void onFailure(Call<Wallpaper> call, Throwable t) {
-
+                    FirebaseCrash.report(new Exception(t.getMessage()));
                 }
             });
         }
@@ -359,7 +362,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 @Override
                 public void onFailure(Call<Wallpaper> call, Throwable t) {
-
+                    FirebaseCrash.report(new Exception(t.getMessage()));
                 }
             });
         }
@@ -376,7 +379,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 @Override
                 public void onFailure(Call<Wallpaper> call, Throwable t) {
-
+                    FirebaseCrash.report(new Exception(t.getMessage()));
                 }
             });
         }
@@ -393,7 +396,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 @Override
                 public void onFailure(Call<Wallpaper> call, Throwable t) {
-
+                    FirebaseCrash.report(new Exception(t.getMessage()));
                 }
             });
         }
@@ -410,7 +413,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 @Override
                 public void onFailure(Call<Wallpaper> call, Throwable t) {
-
+                    FirebaseCrash.report(new Exception(t.getMessage()));
                 }
             });
         }
@@ -433,7 +436,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             @Override
             public void onFailure(Call<Wallpaper> call, Throwable t) {
-
+                FirebaseCrash.report(new Exception(t.getMessage()));
             }
         });
     }
@@ -452,7 +455,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             @Override
             public void onFailure(Call<Wallpaper> call, Throwable t) {
-
+                FirebaseCrash.report(new Exception(t.getMessage()));
             }
         });
     }
@@ -471,7 +474,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             @Override
             public void onFailure(Call<Wallpaper> call, Throwable t) {
-
+                FirebaseCrash.report(new Exception(t.getMessage()));
             }
         });
     }
@@ -490,7 +493,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             @Override
             public void onFailure(Call<Wallpaper> call, Throwable t) {
-
+                FirebaseCrash.report(new Exception(t.getMessage()));
             }
         });
     }
@@ -498,7 +501,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private class GridAdapter extends BaseAdapter {
 
         Context context;
-        ArrayList<String> links = new ArrayList<>();
         List<Wallpaper_> wallpapers = new ArrayList<Wallpaper_>();
 
         public GridAdapter(Context context, List<Wallpaper_> wallpapers) {
@@ -540,6 +542,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 public void onClick(View v) {
                     Intent intent = new Intent(context, Main2Activity.class);
 
+                    Bundle bundle = new Bundle();
+                    bundle.putString(FirebaseAnalytics.Param.ITEM_ID, wallpapers.get(position).getCategory());
+                    bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, ln);
+                    bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image");
+                    mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+
                     intent.putExtra("link", ln);
                     intent.putExtra("rating", wallpapers.get(position).getRating());
                     intent.putExtra("title", wallpapers.get(position).getTitle());
@@ -548,8 +556,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     intent.putExtra("category", wallpapers.get(position).getCategory());
 
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, holder.img, holder.img.getTransitionName()).toBundle();
-                        startActivity(intent, bundle);
+                        Bundle bundle1 = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, holder.img, holder.img.getTransitionName()).toBundle();
+                        startActivity(intent, bundle1);
                     } else {
 
                         startActivity(intent);
@@ -562,7 +570,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         public class Holder {
-            TextView tv;
             ImageView img;
         }
 

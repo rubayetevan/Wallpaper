@@ -41,6 +41,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.NativeExpressAdView;
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.crash.FirebaseCrash;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -68,7 +74,7 @@ public class Main2Activity extends AppCompatActivity {
     private ProgressBar mProgress;
     RatingBar imgRatingBar;
     Dialog dialog;
-
+    private FirebaseAnalytics mFirebaseAnalytics;
     TextView imgTitleTV,imgDescriptionTV,imgSourceTV;
 
     // Progress dialog type (0 - for Horizontal progress bar)
@@ -85,10 +91,30 @@ public class Main2Activity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
         state = false;
-
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         LayoutInflater factory = LayoutInflater.from(Main2Activity.this);
         View DialogView = factory.inflate(R.layout.layout, null);
+        MobileAds.initialize(getApplicationContext(),"ca-app-pub-4958954259926855~1561957723");
+        NativeExpressAdView adView = (NativeExpressAdView)findViewById(R.id.adView);
+        AdRequest request = new AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .build();
+        adView.loadAd(request);
 
+        adView.setAdListener(new AdListener() {
+            @Override
+            public void onAdFailedToLoad(int i) {
+                super.onAdFailedToLoad(i);
+                FirebaseCrash.log("Ad Load Failed.Error Code: "+String.valueOf(i));
+                //Toast.makeText(Main2Activity.this,"Failed: "+String.valueOf(i),Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                FirebaseCrash.log("Ad Loaded Successfully");
+            }
+        });
 
         //mProgress = (ProgressBar) DialogView.findViewById(R.id.progressBar);
 
@@ -238,6 +264,12 @@ public class Main2Activity extends AppCompatActivity {
         if (state == true) {
             Toast.makeText(Main2Activity.this, "This Wallpaper is already downloaded!", Toast.LENGTH_SHORT).show();
         } else if (state == false) {
+
+            Bundle bundle = new Bundle();
+            bundle.putString(FirebaseAnalytics.Param.ITEM_ID, imgDescription);
+            bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, link);
+            bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image");
+            mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
             new DownloadFileFromURL().execute(link);
 
         }
@@ -256,7 +288,11 @@ public class Main2Activity extends AppCompatActivity {
             chooserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             getApplicationContext().startActivity(chooserIntent);
         } else if (state == false) {
-
+            Bundle bundle = new Bundle();
+            bundle.putString(FirebaseAnalytics.Param.ITEM_ID, imgDescription);
+            bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, link);
+            bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image");
+            mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
             new DownloadFileFromURL2().execute(link);
         }
     }
@@ -279,7 +315,7 @@ public class Main2Activity extends AppCompatActivity {
                     button2.setVisibility(View.VISIBLE);
 
                 } else {
-
+                    FirebaseCrash.log("permission_denied");
                     SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPref.edit();
                     editor.putString("permission", "permission_denied");
@@ -388,6 +424,8 @@ public class Main2Activity extends AppCompatActivity {
 
             } catch (Exception e) {
                 Log.e("Error: ", e.getMessage());
+
+                FirebaseCrash.report(new Exception(e.getMessage()));
             }
 
             return null;
@@ -470,6 +508,7 @@ public class Main2Activity extends AppCompatActivity {
 
             } catch (Exception e) {
                 Log.e("Error: ", e.getMessage());
+                FirebaseCrash.report(new Exception(e.getMessage()));
             }
 
             return null;

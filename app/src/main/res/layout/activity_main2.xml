@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context="com.bdjobs.wallpaper.Main2Activity">
 
@@ -165,13 +166,23 @@
                 android:layout_marginTop="14dp"
                 android:background="#e0e0e0" />
 
-            <View
+            <!--<View
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_gravity="center"
                 android:background="#b6b6b6"
                 android:layout_width="280dp"
-                android:layout_height="250dp"/>
+                android:layout_height="250dp"/>-->
+            <com.google.android.gms.ads.NativeExpressAdView
+                android:id="@+id/adView"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                ads:adUnitId="ca-app-pub-4958954259926855/3038690926"
+                ads:adSize="280x250">
+            </com.google.android.gms.ads.NativeExpressAdView>
         </LinearLayout>
 
 
