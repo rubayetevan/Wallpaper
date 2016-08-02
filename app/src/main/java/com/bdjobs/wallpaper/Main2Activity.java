@@ -266,7 +266,7 @@ public class Main2Activity extends AppCompatActivity {
         } else if (state == false) {
 
             Bundle bundle = new Bundle();
-            bundle.putString(FirebaseAnalytics.Param.ITEM_ID, imgDescription);
+            bundle.putString(FirebaseAnalytics.Param.ITEM_ID, imgCategory);
             bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, link);
             bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image");
             mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);

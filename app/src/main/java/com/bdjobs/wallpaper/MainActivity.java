@@ -2,6 +2,7 @@ package com.bdjobs.wallpaper;
 
 import android.annotation.TargetApi;
 import android.app.ActivityOptions;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -25,6 +26,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -46,13 +48,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     int selected_item = 0;
     NavigationView navigationView;
     private FirebaseAnalytics mFirebaseAnalytics;
+    ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         categoryTV = (TextView) findViewById(R.id.categoryTV);
-
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         grid = (GridView) findViewById(R.id.grid);
         getServerData();
@@ -112,14 +116,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.abstractC) {
-            selected_item=0;
+            selected_item = 0;
             categoryTV.setText("Abstract Wallpaper");
             wallpapers.clear();
+            grid.setVisibility(View.GONE);
+            progressBar.setVisibility(View.VISIBLE);
             API.Factory.getInstance().getAbstractWallpaper().enqueue(new Callback<Wallpaper>() {
                 @Override
                 public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
                     wallpapers = response.body().getWallpaper();
                     grid.setAdapter(new GridAdapter(MainActivity.this, wallpapers));
+                    progressBar.setVisibility(View.GONE);
+                    grid.setVisibility(View.VISIBLE);
                 }
 
                 @Override
@@ -127,16 +135,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     FirebaseCrash.report(new Exception(t.getMessage()));
                 }
             });
-        }
-        else if (id == R.id.animals) {
-            selected_item=1;
+        } else if (id == R.id.animals) {
+            selected_item = 1;
             categoryTV.setText("Animals Wallpaper");
             wallpapers.clear();
+            grid.setVisibility(View.GONE);
+            progressBar.setVisibility(View.VISIBLE);
             API.Factory.getInstance().getAnimalandBirdsWallpaper().enqueue(new Callback<Wallpaper>() {
                 @Override
                 public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
                     wallpapers = response.body().getWallpaper();
                     grid.setAdapter(new GridAdapter(MainActivity.this, wallpapers));
+                    progressBar.setVisibility(View.GONE);
+                    grid.setVisibility(View.VISIBLE);
                 }
 
                 @Override
@@ -144,16 +155,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     FirebaseCrash.report(new Exception(t.getMessage()));
                 }
             });
-        }
-        else if (id == R.id.architecture) {
-            selected_item=2;
+        } else if (id == R.id.architecture) {
+            selected_item = 2;
             categoryTV.setText("Architecture Wallpaper");
             wallpapers.clear();
+            grid.setVisibility(View.GONE);
+            progressBar.setVisibility(View.VISIBLE);
             API.Factory.getInstance().getArchitectureWallpaper().enqueue(new Callback<Wallpaper>() {
                 @Override
                 public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
                     wallpapers = response.body().getWallpaper();
                     grid.setAdapter(new GridAdapter(MainActivity.this, wallpapers));
+                    progressBar.setVisibility(View.GONE);
+                    grid.setVisibility(View.VISIBLE);
                 }
 
                 @Override
@@ -161,16 +175,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     FirebaseCrash.report(new Exception(t.getMessage()));
                 }
             });
-        }
-        else if (id == R.id.beach) {
-            selected_item=3;
+        } else if (id == R.id.beach) {
+            selected_item = 3;
             categoryTV.setText("Beach Wallpaper");
             wallpapers.clear();
+            grid.setVisibility(View.GONE);
+            progressBar.setVisibility(View.VISIBLE);
             API.Factory.getInstance().getBeachWallpaper().enqueue(new Callback<Wallpaper>() {
                 @Override
                 public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
                     wallpapers = response.body().getWallpaper();
                     grid.setAdapter(new GridAdapter(MainActivity.this, wallpapers));
+                    progressBar.setVisibility(View.GONE);
+                    grid.setVisibility(View.VISIBLE);
                 }
 
                 @Override
@@ -178,16 +195,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     FirebaseCrash.report(new Exception(t.getMessage()));
                 }
             });
-        }
-        else if (id == R.id.bike) {
-            selected_item=4;
+        } else if (id == R.id.bike) {
+            selected_item = 4;
             categoryTV.setText("Bikes Wallpaper");
             wallpapers.clear();
+            grid.setVisibility(View.GONE);
+            progressBar.setVisibility(View.VISIBLE);
             API.Factory.getInstance().getBikeWallpaper().enqueue(new Callback<Wallpaper>() {
                 @Override
                 public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
                     wallpapers = response.body().getWallpaper();
                     grid.setAdapter(new GridAdapter(MainActivity.this, wallpapers));
+                    progressBar.setVisibility(View.GONE);
+                    grid.setVisibility(View.VISIBLE);
                 }
 
                 @Override
@@ -195,16 +215,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     FirebaseCrash.report(new Exception(t.getMessage()));
                 }
             });
-        }
-        else if (id == R.id.business) {
-            selected_item=5;
+        } else if (id == R.id.business) {
+            selected_item = 5;
             categoryTV.setText("Business Wallpaper");
             wallpapers.clear();
+            grid.setVisibility(View.GONE);
+            progressBar.setVisibility(View.VISIBLE);
             API.Factory.getInstance().getBusinessWallpaper().enqueue(new Callback<Wallpaper>() {
                 @Override
                 public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
                     wallpapers = response.body().getWallpaper();
                     grid.setAdapter(new GridAdapter(MainActivity.this, wallpapers));
+                    progressBar.setVisibility(View.GONE);
+                    grid.setVisibility(View.VISIBLE);
                 }
 
                 @Override
@@ -212,16 +235,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     FirebaseCrash.report(new Exception(t.getMessage()));
                 }
             });
-        }
-        else if (id == R.id.city) {
-            selected_item=6;
+        } else if (id == R.id.city) {
+            selected_item = 6;
             categoryTV.setText("City Wallpaper");
             wallpapers.clear();
+            grid.setVisibility(View.GONE);
+            progressBar.setVisibility(View.VISIBLE);
             API.Factory.getInstance().getCityWallpaper().enqueue(new Callback<Wallpaper>() {
                 @Override
                 public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
                     wallpapers = response.body().getWallpaper();
                     grid.setAdapter(new GridAdapter(MainActivity.this, wallpapers));
+                    progressBar.setVisibility(View.GONE);
+                    grid.setVisibility(View.VISIBLE);
                 }
 
                 @Override
@@ -229,16 +255,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     FirebaseCrash.report(new Exception(t.getMessage()));
                 }
             });
-        }
-        else if (id == R.id.creative) {
-            selected_item=7;
+        } else if (id == R.id.creative) {
+            selected_item = 7;
             categoryTV.setText("Creative Wallpaper");
             wallpapers.clear();
+            grid.setVisibility(View.GONE);
+            progressBar.setVisibility(View.VISIBLE);
             API.Factory.getInstance().getCreativeWallpaper().enqueue(new Callback<Wallpaper>() {
                 @Override
                 public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
                     wallpapers = response.body().getWallpaper();
                     grid.setAdapter(new GridAdapter(MainActivity.this, wallpapers));
+                    progressBar.setVisibility(View.GONE);
+                    grid.setVisibility(View.VISIBLE);
                 }
 
                 @Override
@@ -246,16 +275,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     FirebaseCrash.report(new Exception(t.getMessage()));
                 }
             });
-        }
-        else if (id == R.id.flowers) {
-            selected_item=8;
+        } else if (id == R.id.flowers) {
+            selected_item = 8;
             categoryTV.setText("Flower Wallpaper");
             wallpapers.clear();
+            grid.setVisibility(View.GONE);
+            progressBar.setVisibility(View.VISIBLE);
             API.Factory.getInstance().getFlowersWallpaper().enqueue(new Callback<Wallpaper>() {
                 @Override
                 public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
                     wallpapers = response.body().getWallpaper();
                     grid.setAdapter(new GridAdapter(MainActivity.this, wallpapers));
+                    progressBar.setVisibility(View.GONE);
+                    grid.setVisibility(View.VISIBLE);
                 }
 
                 @Override
@@ -263,16 +295,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     FirebaseCrash.report(new Exception(t.getMessage()));
                 }
             });
-        }
-        else if (id == R.id.food) {
-            selected_item=9;
+        } else if (id == R.id.food) {
+            selected_item = 9;
             categoryTV.setText("Food Wallpaper");
             wallpapers.clear();
+            grid.setVisibility(View.GONE);
+            progressBar.setVisibility(View.VISIBLE);
             API.Factory.getInstance().getFoodWallpaper().enqueue(new Callback<Wallpaper>() {
                 @Override
                 public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
                     wallpapers = response.body().getWallpaper();
                     grid.setAdapter(new GridAdapter(MainActivity.this, wallpapers));
+                    progressBar.setVisibility(View.GONE);
+                    grid.setVisibility(View.VISIBLE);
                 }
 
                 @Override
@@ -280,16 +315,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     FirebaseCrash.report(new Exception(t.getMessage()));
                 }
             });
-        }
-        else if (id == R.id.funny) {
-            selected_item=10;
+        } else if (id == R.id.funny) {
+            selected_item = 10;
             categoryTV.setText("Funny Wallpaper");
             wallpapers.clear();
+            grid.setVisibility(View.GONE);
+            progressBar.setVisibility(View.VISIBLE);
             API.Factory.getInstance().getFunnyWallpaper().enqueue(new Callback<Wallpaper>() {
                 @Override
                 public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
                     wallpapers = response.body().getWallpaper();
                     grid.setAdapter(new GridAdapter(MainActivity.this, wallpapers));
+                    progressBar.setVisibility(View.GONE);
+                    grid.setVisibility(View.VISIBLE);
                 }
 
                 @Override
@@ -297,16 +335,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     FirebaseCrash.report(new Exception(t.getMessage()));
                 }
             });
-        }
-        else if (id == R.id.games) {
-            selected_item=11;
+        } else if (id == R.id.games) {
+            selected_item = 11;
             categoryTV.setText("Games Wallpaper");
             wallpapers.clear();
+            grid.setVisibility(View.GONE);
+            progressBar.setVisibility(View.VISIBLE);
             API.Factory.getInstance().getGamesWallpaper().enqueue(new Callback<Wallpaper>() {
                 @Override
                 public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
                     wallpapers = response.body().getWallpaper();
                     grid.setAdapter(new GridAdapter(MainActivity.this, wallpapers));
+                    progressBar.setVisibility(View.GONE);
+                    grid.setVisibility(View.VISIBLE);
                 }
 
                 @Override
@@ -314,16 +355,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     FirebaseCrash.report(new Exception(t.getMessage()));
                 }
             });
-        }
-        else if (id == R.id.inspiraton) {
-            selected_item=12;
+        } else if (id == R.id.inspiraton) {
+            selected_item = 12;
             categoryTV.setText("Inspirational Wallpaper");
             wallpapers.clear();
+            grid.setVisibility(View.GONE);
+            progressBar.setVisibility(View.VISIBLE);
             API.Factory.getInstance().getInspirationalWallpaper().enqueue(new Callback<Wallpaper>() {
                 @Override
                 public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
                     wallpapers = response.body().getWallpaper();
                     grid.setAdapter(new GridAdapter(MainActivity.this, wallpapers));
+                    progressBar.setVisibility(View.GONE);
+                    grid.setVisibility(View.VISIBLE);
                 }
 
                 @Override
@@ -331,16 +375,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     FirebaseCrash.report(new Exception(t.getMessage()));
                 }
             });
-        }
-        else if (id == R.id.landscape) {
-            selected_item=13;
+        } else if (id == R.id.landscape) {
+            selected_item = 13;
             categoryTV.setText("Landscape Wallpaper");
             wallpapers.clear();
+            grid.setVisibility(View.GONE);
+            progressBar.setVisibility(View.VISIBLE);
             API.Factory.getInstance().getLandscapeWallpaper().enqueue(new Callback<Wallpaper>() {
                 @Override
                 public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
                     wallpapers = response.body().getWallpaper();
                     grid.setAdapter(new GridAdapter(MainActivity.this, wallpapers));
+                    progressBar.setVisibility(View.GONE);
+                    grid.setVisibility(View.VISIBLE);
                 }
 
                 @Override
@@ -348,16 +395,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     FirebaseCrash.report(new Exception(t.getMessage()));
                 }
             });
-        }
-        else if (id == R.id.macro) {
-            selected_item=14;
+        } else if (id == R.id.macro) {
+            selected_item = 14;
             categoryTV.setText("Macro Wallpaper");
             wallpapers.clear();
+            grid.setVisibility(View.GONE);
+            progressBar.setVisibility(View.VISIBLE);
             API.Factory.getInstance().getMacroWallpaper().enqueue(new Callback<Wallpaper>() {
                 @Override
                 public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
                     wallpapers = response.body().getWallpaper();
                     grid.setAdapter(new GridAdapter(MainActivity.this, wallpapers));
+                    progressBar.setVisibility(View.GONE);
+                    grid.setVisibility(View.VISIBLE);
                 }
 
                 @Override
@@ -365,16 +415,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     FirebaseCrash.report(new Exception(t.getMessage()));
                 }
             });
-        }
-        else if (id == R.id.minimal) {
-            selected_item=15;
+        } else if (id == R.id.minimal) {
+            selected_item = 15;
             categoryTV.setText("Minimal Wallpaper");
             wallpapers.clear();
+            grid.setVisibility(View.GONE);
+            progressBar.setVisibility(View.VISIBLE);
             API.Factory.getInstance().getMinimalWallpaper().enqueue(new Callback<Wallpaper>() {
                 @Override
                 public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
                     wallpapers = response.body().getWallpaper();
                     grid.setAdapter(new GridAdapter(MainActivity.this, wallpapers));
+                    progressBar.setVisibility(View.GONE);
+                    grid.setVisibility(View.VISIBLE);
                 }
 
                 @Override
@@ -382,16 +435,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     FirebaseCrash.report(new Exception(t.getMessage()));
                 }
             });
-        }
-        else if (id == R.id.nature) {
-            selected_item=16;
+        } else if (id == R.id.nature) {
+            selected_item = 16;
             categoryTV.setText("Nature Wallpaper");
             wallpapers.clear();
+            grid.setVisibility(View.GONE);
+            progressBar.setVisibility(View.VISIBLE);
             API.Factory.getInstance().getNatureWallpaper().enqueue(new Callback<Wallpaper>() {
                 @Override
                 public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
                     wallpapers = response.body().getWallpaper();
                     grid.setAdapter(new GridAdapter(MainActivity.this, wallpapers));
+                    progressBar.setVisibility(View.GONE);
+                    grid.setVisibility(View.VISIBLE);
                 }
 
                 @Override
@@ -399,16 +455,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     FirebaseCrash.report(new Exception(t.getMessage()));
                 }
             });
-        }
-        else if (id == R.id.space) {
-            selected_item=17;
+        } else if (id == R.id.space) {
+            selected_item = 17;
             categoryTV.setText("Space Wallpaper");
             wallpapers.clear();
+            grid.setVisibility(View.GONE);
+            progressBar.setVisibility(View.VISIBLE);
             API.Factory.getInstance().getSpaceWallpaper().enqueue(new Callback<Wallpaper>() {
                 @Override
                 public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
                     wallpapers = response.body().getWallpaper();
                     grid.setAdapter(new GridAdapter(MainActivity.this, wallpapers));
+                    progressBar.setVisibility(View.GONE);
+                    grid.setVisibility(View.VISIBLE);
                 }
 
                 @Override
@@ -417,7 +476,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
             });
         }
-
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -427,16 +485,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void getServerData() {
         categoryTV.setText("Featured Wallpaper");
+        progressBar.setVisibility(View.VISIBLE);
+
         API.Factory.getInstance().getFeaturedWallpaper().enqueue(new Callback<Wallpaper>() {
             @Override
             public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
                 wallpapers = response.body().getWallpaper();
                 grid.setAdapter(new GridAdapter(MainActivity.this, wallpapers));
+                progressBar.setVisibility(View.GONE);
             }
 
             @Override
             public void onFailure(Call<Wallpaper> call, Throwable t) {
                 FirebaseCrash.report(new Exception(t.getMessage()));
+                progressBar.setVisibility(View.GONE);
             }
         });
     }
@@ -446,54 +508,67 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.getMenu().getItem(selected_item).setChecked(false);
         categoryTV.setText("Featured Wallpaper");
         wallpapers.clear();
+        grid.setVisibility(View.GONE);
+        progressBar.setVisibility(View.VISIBLE);
         API.Factory.getInstance().getFeaturedWallpaper().enqueue(new Callback<Wallpaper>() {
             @Override
             public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
                 wallpapers = response.body().getWallpaper();
                 grid.setAdapter(new GridAdapter(MainActivity.this, wallpapers));
+                progressBar.setVisibility(View.GONE);
+                grid.setVisibility(View.VISIBLE);
             }
 
             @Override
             public void onFailure(Call<Wallpaper> call, Throwable t) {
                 FirebaseCrash.report(new Exception(t.getMessage()));
+                progressBar.setVisibility(View.GONE);
             }
         });
     }
 
     public void getEditorWallpaper(View view) {
-
         navigationView.getMenu().getItem(selected_item).setChecked(false);
         categoryTV.setText("Editor's Choice");
         wallpapers.clear();
+        grid.setVisibility(View.GONE);
+        progressBar.setVisibility(View.VISIBLE);
         API.Factory.getInstance().getEditorWallpaper().enqueue(new Callback<Wallpaper>() {
             @Override
             public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
                 wallpapers = response.body().getWallpaper();
                 grid.setAdapter(new GridAdapter(MainActivity.this, wallpapers));
+                progressBar.setVisibility(View.GONE);
+                grid.setVisibility(View.VISIBLE);
             }
 
             @Override
             public void onFailure(Call<Wallpaper> call, Throwable t) {
                 FirebaseCrash.report(new Exception(t.getMessage()));
+                progressBar.setVisibility(View.GONE);
             }
         });
     }
 
     public void getPopularWallpaper(View view) {
-
         navigationView.getMenu().getItem(selected_item).setChecked(false);
         categoryTV.setText("Popular Wallpaper");
         wallpapers.clear();
+        grid.setVisibility(View.GONE);
+        progressBar.setVisibility(View.VISIBLE);
         API.Factory.getInstance().getPopularWallpaper().enqueue(new Callback<Wallpaper>() {
             @Override
             public void onResponse(Call<Wallpaper> call, Response<Wallpaper> response) {
                 wallpapers = response.body().getWallpaper();
                 grid.setAdapter(new GridAdapter(MainActivity.this, wallpapers));
+                progressBar.setVisibility(View.GONE);
+                grid.setVisibility(View.VISIBLE);
             }
 
             @Override
             public void onFailure(Call<Wallpaper> call, Throwable t) {
                 FirebaseCrash.report(new Exception(t.getMessage()));
+                progressBar.setVisibility(View.GONE);
             }
         });
     }
@@ -546,7 +621,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     bundle.putString(FirebaseAnalytics.Param.ITEM_ID, wallpapers.get(position).getCategory());
                     bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, ln);
                     bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image");
-                    mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+                    mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.VIEW_ITEM, bundle);
 
                     intent.putExtra("link", ln);
                     intent.putExtra("rating", wallpapers.get(position).getRating());

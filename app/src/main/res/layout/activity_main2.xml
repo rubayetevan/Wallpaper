@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="#fafafa"
     tools:context="com.bdjobs.wallpaper.Main2Activity">
 
     <LinearLayout
@@ -50,7 +51,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+android:layout_marginBottom="10dp"
             android:orientation="vertical">
 
             <TextView
@@ -117,6 +118,29 @@
                 android:layout_marginTop="14dp"
                 android:background="#e0e0e0" />
 
+            <com.google.android.gms.ads.NativeExpressAdView
+                android:id="@+id/adView"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                ads:adUnitId="ca-app-pub-4958954259926855/6182130523"
+                ads:adSize="300x80">
+            </com.google.android.gms.ads.NativeExpressAdView>
+
+
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_margin="10dp"
+                android:layout_marginBottom="14dp"
+                android:layout_marginTop="14dp"
+                android:background="#e0e0e0" />
+
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -158,31 +182,6 @@
 
 
             </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:layout_margin="10dp"
-                android:layout_marginBottom="14dp"
-                android:layout_marginTop="14dp"
-                android:background="#e0e0e0" />
-
-            <!--<View
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center"
-                android:background="#b6b6b6"
-                android:layout_width="280dp"
-                android:layout_height="250dp"/>-->
-            <com.google.android.gms.ads.NativeExpressAdView
-                android:id="@+id/adView"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                ads:adUnitId="ca-app-pub-4958954259926855/3038690926"
-                ads:adSize="280x250">
-            </com.google.android.gms.ads.NativeExpressAdView>
         </LinearLayout>
 
 
