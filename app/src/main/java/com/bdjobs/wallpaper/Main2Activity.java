@@ -94,7 +94,7 @@ public class Main2Activity extends AppCompatActivity {
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         LayoutInflater factory = LayoutInflater.from(Main2Activity.this);
         View DialogView = factory.inflate(R.layout.layout, null);
-        MobileAds.initialize(getApplicationContext(),"ca-app-pub-4958954259926855~1561957723");
+        /*MobileAds.initialize(getApplicationContext(),"ca-app-pub-4958954259926855~1561957723");
         NativeExpressAdView adView = (NativeExpressAdView)findViewById(R.id.adView);
         AdRequest request = new AdRequest.Builder()
                 .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
@@ -115,7 +115,7 @@ public class Main2Activity extends AppCompatActivity {
                 FirebaseCrash.log("Ad Loaded Successfully");
             }
         });
-
+*/
         //mProgress = (ProgressBar) DialogView.findViewById(R.id.progressBar);
 
         imgTitleTV = (TextView) findViewById(R.id.imgTitleTV);

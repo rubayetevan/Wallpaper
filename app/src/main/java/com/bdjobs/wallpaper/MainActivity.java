@@ -68,9 +68,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (!isOnline(MainActivity.this)) {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
             alertDialogBuilder.setMessage("NO Internet Connection! Please connect to internet and Try again.");
-
-
-
             alertDialogBuilder.setNegativeButton("EXIT", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
