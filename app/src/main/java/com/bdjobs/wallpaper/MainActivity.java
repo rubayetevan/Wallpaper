@@ -4,11 +4,15 @@ import android.annotation.TargetApi;
 import android.app.ActivityOptions;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -28,6 +32,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -59,7 +64,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         grid = (GridView) findViewById(R.id.grid);
-        getServerData();
+
+        if (!isOnline(MainActivity.this)) {
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            alertDialogBuilder.setMessage("NO Internet Connection! Please connect to internet and Try again.");
+
+
+
+            alertDialogBuilder.setNegativeButton("EXIT", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    finish();
+                }
+            });
+
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+        } else {
+            getServerData();
+        }
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -76,6 +99,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setItemIconTintList(null);
     }
+
 
     @Override
     public void onBackPressed() {
@@ -605,10 +629,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             convertView = getLayoutInflater().inflate(R.layout.grid_item, parent, false);
             holder.img = (ImageView) convertView.findViewById(R.id.imgv);
 
-            final String ln = wallpapers.get(position).getPicurl();
+            final String thumb = wallpapers.get(position).getThumb();
 
             Glide.with(context)
-                    .load(ln)
+                    .load(thumb)
                     .override(200, 200)
                     .into(holder.img);
             holder.img.setOnClickListener(new View.OnClickListener() {
@@ -619,11 +643,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                     Bundle bundle = new Bundle();
                     bundle.putString(FirebaseAnalytics.Param.ITEM_ID, wallpapers.get(position).getCategory());
-                    bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, ln);
+                    bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, thumb);
                     bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image");
                     mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.VIEW_ITEM, bundle);
-
-                    intent.putExtra("link", ln);
+                    intent.putExtra("thumb",thumb);
+                    intent.putExtra("link", wallpapers.get(position).getPicurl());
                     intent.putExtra("rating", wallpapers.get(position).getRating());
                     intent.putExtra("title", wallpapers.get(position).getTitle());
                     intent.putExtra("description", wallpapers.get(position).getDescription());
@@ -658,5 +682,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
 
+    }
+
+    public boolean isOnline(Context context) {
+        ConnectivityManager cm =
+                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 }

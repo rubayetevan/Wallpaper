@@ -5,12 +5,17 @@ package com.bdjobs.wallpaper;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-
 public class Wallpaper_ {
 
+    @SerializedName("thumb")
+    @Expose
+    private String thumb;
     @SerializedName("picurl")
     @Expose
     private String picurl;
+    @SerializedName("source")
+    @Expose
+    private String source;
     @SerializedName("rating")
     @Expose
     private String rating;
@@ -20,12 +25,27 @@ public class Wallpaper_ {
     @SerializedName("description")
     @Expose
     private String description;
-    @SerializedName("source")
-    @Expose
-    private String source;
     @SerializedName("category")
     @Expose
     private String category;
+
+    /**
+     * 
+     * @return
+     *     The thumb
+     */
+    public String getThumb() {
+        return thumb;
+    }
+
+    /**
+     * 
+     * @param thumb
+     *     The thumb
+     */
+    public void setThumb(String thumb) {
+        this.thumb = thumb;
+    }
 
     /**
      * 
@@ -43,6 +63,24 @@ public class Wallpaper_ {
      */
     public void setPicurl(String picurl) {
         this.picurl = picurl;
+    }
+
+    /**
+     * 
+     * @return
+     *     The source
+     */
+    public String getSource() {
+        return source;
+    }
+
+    /**
+     * 
+     * @param source
+     *     The source
+     */
+    public void setSource(String source) {
+        this.source = source;
     }
 
     /**
@@ -97,24 +135,6 @@ public class Wallpaper_ {
      */
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    /**
-     * 
-     * @return
-     *     The source
-     */
-    public String getSource() {
-        return source;
-    }
-
-    /**
-     * 
-     * @param source
-     *     The source
-     */
-    public void setSource(String source) {
-        this.source = source;
     }
 
     /**

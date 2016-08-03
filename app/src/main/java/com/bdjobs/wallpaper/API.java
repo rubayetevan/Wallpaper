@@ -9,71 +9,69 @@ import retrofit2.http.GET;
  * Created by Rubayet on 24-May-16.
  */
 public interface API {
-    String baseURL = "https://www.dropbox.com/s/";
+    String baseURL = "http://appstudio.creativemine.net/hd_wallpaper_pro/API/";
 
-    //https://www.dropbox.com/s/j5bbbdxe3yl1qc8/wallpaper.json?dl=0
-
-    @GET("0u50az92julliam/FetauredWallpaper.json?raw=1")
+    @GET("FetauredWallpaper.json")
     Call<Wallpaper> getFeaturedWallpaper();
 
-    @GET("3jlrhpqsct8bghg/AbstractWallpaper.json?raw=1")
+    @GET("AbstractWallpaper.json")
     Call<Wallpaper> getAbstractWallpaper();
 
-    @GET("li0kot0dh1wq2tf/Animals.json?raw=1")
+    @GET("Animals.json")
     Call<Wallpaper> getAnimalandBirdsWallpaper();
 
-    @GET("l50yo7m4iq93io3/Architecture.json?raw=1")
+    @GET("Architecture.json")
     Call<Wallpaper> getArchitectureWallpaper();
 
-    @GET("prr4ovj852w6ja9/Beach.json?raw=1")
+    @GET("Beach.json")
     Call<Wallpaper> getBeachWallpaper();
 
-    @GET("k4y3jo34mknez9f/Bikes.json?raw=1")
+    @GET("Bikes.json")
     Call<Wallpaper> getBikeWallpaper();
 
-    @GET("52vk683zdd5enhk/Business.json?raw=1")
+    @GET("Business.json")
     Call<Wallpaper> getBusinessWallpaper();
 
-    @GET("kngsvt225pphx0o/City.json?raw=1")
+    @GET("City.json")
     Call<Wallpaper> getCityWallpaper();
 
-    @GET("5zroprim12kg10f/Creative_Graphics.json?raw=1")
+    @GET("Creative_Graphics.json")
     Call<Wallpaper> getCreativeWallpaper();
 
-    @GET("o6msowl3bxhshaj/Editor_Picked.json?raw=1")
+    @GET("Editor_Picked.json")
     Call<Wallpaper> getEditorWallpaper();
 
-    @GET("6yzu43owxx5nhhy/Flowers.json?raw=1")
+    @GET("Flowers.json")
     Call<Wallpaper> getFlowersWallpaper();
 
-    @GET("qdmqcpst34p6xcm/Food.json?raw=1")
+    @GET("Food.json")
     Call<Wallpaper> getFoodWallpaper();
 
-    @GET("rsybwv2wf9wx8yt/Funny.json?raw=1")
+    @GET("Funny.json")
     Call<Wallpaper> getFunnyWallpaper();
 
-    @GET("a2s8zmskkwq01eo/Games.json?raw=1")
+    @GET("Games.json")
     Call<Wallpaper> getGamesWallpaper();
 
-    @GET("vh6h0sjfjngzdyu/Inspirational.json?raw=1")
+    @GET("Inspirational.json")
     Call<Wallpaper> getInspirationalWallpaper();
 
-    @GET("c4tbbkrpqnlqedn/Landscape.json?raw=1")
+    @GET("Landscape.json")
     Call<Wallpaper> getLandscapeWallpaper();
 
-    @GET("cvv2mja6ycsh1lz/Macro.json?raw=1")
+    @GET("Macro.json")
     Call<Wallpaper> getMacroWallpaper();
 
-    @GET("mzegs97qi6vn9sw/Minimal.json?raw=1")
+    @GET("Minimal.json")
     Call<Wallpaper> getMinimalWallpaper();
 
-    @GET("n7a70kk06zygxjk/Nature.json?raw=1")
+    @GET("Nature.json")
     Call<Wallpaper> getNatureWallpaper();
 
-    @GET("4adbk84vojkpd2y/Popular.json?raw=1")
+    @GET("Popular.json")
     Call<Wallpaper> getPopularWallpaper();
 
-    @GET("d2gb6cd2qunfln7/Space.json?raw=1")
+    @GET("Space.json")
     Call<Wallpaper> getSpaceWallpaper();
 
     class Factory {

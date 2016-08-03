@@ -61,7 +61,7 @@ import java.util.concurrent.ExecutionException;
 
 public class Main2Activity extends AppCompatActivity {
     ImageView imageView;
-    String link,imgTitle,imgDescription,imgSource,imgRating,imgCategory;
+    String link,imgTitle,imgDescription,imgSource,imgRating,imgCategory,thumb;
     Bitmap theBitmap;
     String loc;
     String fname = "";
@@ -135,6 +135,7 @@ public class Main2Activity extends AppCompatActivity {
         });
 
         Intent intent = getIntent();
+        thumb=intent.getStringExtra("thumb");
         link = intent.getStringExtra("link");
         imgTitle = intent.getStringExtra("title");
         imgDescription = intent.getStringExtra("description");
@@ -155,7 +156,7 @@ public class Main2Activity extends AppCompatActivity {
         });
 
 
-        Glide.with(this).load(link).into(imageView);
+        Glide.with(this).load(thumb).into(imageView);
 
         Rqpr();
 
