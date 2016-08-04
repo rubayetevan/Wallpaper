@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     GridView grid;
     private List<Wallpaper_> wallpapers = new ArrayList<Wallpaper_>();
     TextView categoryTV;
+    Button featuredBTN,editorBTN,popularBTN;
     int selected_item = 0;
     NavigationView navigationView;
     private FirebaseAnalytics mFirebaseAnalytics;
@@ -60,9 +61,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        mFirebaseAnalytics.setAnalyticsCollectionEnabled(true);
         categoryTV = (TextView) findViewById(R.id.categoryTV);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-
+        featuredBTN = (Button) findViewById(R.id.featuredBTN);
+        editorBTN = (Button) findViewById(R.id.editorBTN);
+        popularBTN = (Button) findViewById(R.id.popularBTN);
         grid = (GridView) findViewById(R.id.grid);
 
         if (!isOnline(MainActivity.this)) {
@@ -76,7 +80,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             });
 
             AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.setCancelable(false);
             alertDialog.show();
+
         } else {
             getServerData();
         }
@@ -133,9 +139,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+        if (!isOnline(MainActivity.this)) {
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            alertDialogBuilder.setMessage("NO Internet Connection! Please connect to internet and Try again.");
+            alertDialogBuilder.setNegativeButton("EXIT", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    finish();
+                }
+            });
+
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.setCancelable(false);
+            alertDialog.show();
+
+        } else {
+
+
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
+        featuredBTN.setTextColor(getResources().getColor(R.color.inactive));
+        editorBTN.setTextColor(getResources().getColor(R.color.inactive));
+        popularBTN.setTextColor(getResources().getColor(R.color.inactive));
         if (id == R.id.abstractC) {
             selected_item = 0;
             categoryTV.setText("Abstract Wallpaper");
@@ -498,7 +523,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             });
         }
 
-
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -506,6 +531,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void getServerData() {
         categoryTV.setText("Featured Wallpaper");
+        featuredBTN.setTextColor(getResources().getColor(R.color.active));
+        editorBTN.setTextColor(getResources().getColor(R.color.inactive));
+        popularBTN.setTextColor(getResources().getColor(R.color.inactive));
         progressBar.setVisibility(View.VISIBLE);
 
         API.Factory.getInstance().getFeaturedWallpaper().enqueue(new Callback<Wallpaper>() {
@@ -528,6 +556,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         navigationView.getMenu().getItem(selected_item).setChecked(false);
         categoryTV.setText("Featured Wallpaper");
+        featuredBTN.setTextColor(getResources().getColor(R.color.active));
+        editorBTN.setTextColor(getResources().getColor(R.color.inactive));
+        popularBTN.setTextColor(getResources().getColor(R.color.inactive));
         wallpapers.clear();
         grid.setVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);
@@ -551,6 +582,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void getEditorWallpaper(View view) {
         navigationView.getMenu().getItem(selected_item).setChecked(false);
         categoryTV.setText("Editor's Choice");
+        featuredBTN.setTextColor(getResources().getColor(R.color.inactive));
+        editorBTN.setTextColor(getResources().getColor(R.color.active));
+        popularBTN.setTextColor(getResources().getColor(R.color.inactive));
         wallpapers.clear();
         grid.setVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);
@@ -574,6 +608,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void getPopularWallpaper(View view) {
         navigationView.getMenu().getItem(selected_item).setChecked(false);
         categoryTV.setText("Popular Wallpaper");
+        featuredBTN.setTextColor(getResources().getColor(R.color.inactive));
+        editorBTN.setTextColor(getResources().getColor(R.color.inactive));
+        popularBTN.setTextColor(getResources().getColor(R.color.active));
         wallpapers.clear();
         grid.setVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);

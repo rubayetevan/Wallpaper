@@ -38,6 +38,7 @@
                 android:padding="2dp">
 
                 <Button
+                    android:id="@+id/featuredBTN"
                     android:onClick="getFeaturedWallpaper"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
@@ -51,6 +52,7 @@
                     android:textSize="12sp" />
 
                 <Button
+                    android:id="@+id/editorBTN"
                     android:onClick="getEditorWallpaper"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
@@ -65,6 +67,7 @@
 
 
                 <Button
+                    android:id="@+id/popularBTN"
                     android:onClick="getPopularWallpaper"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"

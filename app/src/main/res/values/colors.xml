@@ -13,7 +13,8 @@
     <color name="category_7">#FFFFFF</color>
     <color name="category_8">#FFFFFF</color>
     <color name="category_9">#FFFFFF</color>
-
+    <color name="active">#FFFFFF</color>
+    <color name="inactive">#b8e4d1</color>
     <color name="black_overlay">#66000000</color>
 
 </resources>

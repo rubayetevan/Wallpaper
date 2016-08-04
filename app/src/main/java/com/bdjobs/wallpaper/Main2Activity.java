@@ -82,7 +82,8 @@ public class Main2Activity extends AppCompatActivity {
     public static final int dialog_bar_type = 1;
 
     final String PERMISSION = Manifest.permission.WRITE_EXTERNAL_STORAGE;
-
+    private AsyncTask<String, String, String> mTask1;
+    private AsyncTask<String, String, String> mTask2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,6 +93,7 @@ public class Main2Activity extends AppCompatActivity {
         actionBar.hide();
         state = false;
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        mFirebaseAnalytics.setAnalyticsCollectionEnabled(true);
         LayoutInflater factory = LayoutInflater.from(Main2Activity.this);
         View DialogView = factory.inflate(R.layout.layout, null);
         /*MobileAds.initialize(getApplicationContext(),"ca-app-pub-4958954259926855~1561957723");
@@ -210,6 +212,20 @@ public class Main2Activity extends AppCompatActivity {
                 pDialog.setMax(100);
                 pDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
                 pDialog.setCancelable(false);
+                pDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if(mTask1!=null) {
+                            mTask1.cancel(true);
+                        }
+                        else if(mTask2!=null)
+                        {
+                            mTask2.cancel(true);
+                        }
+
+                        dialog.dismiss();
+                    }
+                });
                 pDialog.show();
                 //pDialog.setContentView(R.layout.layout);
                 return pDialog;
@@ -271,7 +287,7 @@ public class Main2Activity extends AppCompatActivity {
             bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, link);
             bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image");
             mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
-            new DownloadFileFromURL().execute(link);
+            mTask1= new DownloadFileFromURL().execute(link);
 
         }
 
@@ -294,7 +310,7 @@ public class Main2Activity extends AppCompatActivity {
             bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, link);
             bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image");
             mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
-            new DownloadFileFromURL2().execute(link);
+            mTask2=new DownloadFileFromURL2().execute(link);
         }
     }
 
