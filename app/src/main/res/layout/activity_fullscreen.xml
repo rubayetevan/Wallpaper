@@ -8,6 +8,10 @@
     <!-- The primary full-screen view. This can be replaced with whatever view
          is needed to present your content, e.g. VideoView, SurfaceView,
          TextureView, etc. -->
+    <TextView
+        android:id="@+id/fileSizeTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
     <ImageView
         android:transitionName="@string/transition"
         android:scaleType="centerCrop"

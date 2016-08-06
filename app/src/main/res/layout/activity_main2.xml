@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:ads="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:background="#fafafa"
+    android:orientation="vertical"
     tools:context="com.bdjobs.wallpaper.Main2Activity">
 
     <LinearLayout
@@ -22,36 +22,38 @@
             tools:context="com.bdjobs.wallpaper.Main2Activity">
 
             <ImageView
-                android:background="@drawable/spinner_720_520"
                 android:id="@+id/imgD"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@drawable/spinner_720_520"
                 android:scaleType="centerCrop"
                 android:transitionName="@string/transition" />
+
             <View
-                android:background="@drawable/gradient"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:background="@drawable/gradient" />
 
             <ImageButton
-                android:layout_margin="16dp"
-
                 android:layout_width="24dp"
+
                 android:layout_height="24dp"
+                android:layout_margin="16dp"
                 android:background="@drawable/ic_arrow_back_black_24dp" />
+
             <View
                 android:id="@+id/backBTN"
-                android:layout_marginLeft="5dp"
-               android:layout_marginTop="5dp"
                 android:layout_width="48dp"
-                android:layout_height="48dp"/>
+                android:layout_height="48dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp" />
 
         </FrameLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-android:layout_marginBottom="10dp"
+            android:layout_marginBottom="10dp"
             android:orientation="vertical">
 
             <TextView
@@ -120,16 +122,13 @@ android:layout_marginBottom="10dp"
 
             <com.google.android.gms.ads.NativeExpressAdView
                 android:id="@+id/adView"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                ads:adUnitId="ca-app-pub-4958954259926855/6182130523"
-                ads:adSize="300x80">
-            </com.google.android.gms.ads.NativeExpressAdView>
-
-
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                ads:adSize="300x80"
+                ads:adUnitId="ca-app-pub-4958954259926855/6182130523"></com.google.android.gms.ads.NativeExpressAdView>
 
 
             <View
@@ -140,7 +139,34 @@ android:layout_marginBottom="10dp"
                 android:layout_marginTop="14dp"
                 android:background="#e0e0e0" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Image Size: "
+                    android:textColor="#424242" />
+
+                <TextView
+                    android:id="@+id/imgSizeTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="#757575" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_margin="10dp"
+                android:layout_marginBottom="14dp"
+                android:layout_marginTop="14dp"
+                android:background="#e0e0e0" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

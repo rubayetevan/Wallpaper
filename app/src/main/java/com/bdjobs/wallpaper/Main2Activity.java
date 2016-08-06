@@ -41,6 +41,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.MobileAds;
@@ -56,18 +59,20 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.Random;
 import java.util.concurrent.ExecutionException;
 
 public class Main2Activity extends AppCompatActivity {
     ImageView imageView;
-    String link,imgTitle,imgDescription,imgSource,imgRating,imgCategory,thumb;
+    String link, imgTitle, imgDescription, imgSource, imgRating, imgCategory, thumb;
     Bitmap theBitmap;
     String loc;
     String fname = "";
     boolean state;
     private ProgressDialog progress;
-    Button button,button2;
+    Button button, button2;
     View backBTN;
     final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
     private ProgressDialog pDialog;
@@ -75,8 +80,8 @@ public class Main2Activity extends AppCompatActivity {
     RatingBar imgRatingBar;
     Dialog dialog;
     private FirebaseAnalytics mFirebaseAnalytics;
-    TextView imgTitleTV,imgDescriptionTV,imgSourceTV;
-
+    TextView imgTitleTV, imgDescriptionTV, imgSourceTV, imageSizeTV;
+    double lenghtOfFile=0;
     // Progress dialog type (0 - for Horizontal progress bar)
     public static final int progress_bar_type = 0;
     public static final int dialog_bar_type = 1;
@@ -84,6 +89,7 @@ public class Main2Activity extends AppCompatActivity {
     final String PERMISSION = Manifest.permission.WRITE_EXTERNAL_STORAGE;
     private AsyncTask<String, String, String> mTask1;
     private AsyncTask<String, String, String> mTask2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -124,7 +130,7 @@ public class Main2Activity extends AppCompatActivity {
         imgDescriptionTV = (TextView) findViewById(R.id.imgDescriptionTV);
         imgSourceTV = (TextView) findViewById(R.id.imgSourceTV);
         imgRatingBar = (RatingBar) findViewById(R.id.imgRatingBar);
-
+        imageSizeTV = (TextView) findViewById(R.id.imgSizeTV);
         imageView = (ImageView) findViewById(R.id.imgD);
         button = (Button) findViewById(R.id.downloadBTN);
         button2 = (Button) findViewById(R.id.wallpaperBTN);
@@ -137,16 +143,14 @@ public class Main2Activity extends AppCompatActivity {
         });
 
         Intent intent = getIntent();
-        thumb=intent.getStringExtra("thumb");
+        thumb = intent.getStringExtra("thumb");
         link = intent.getStringExtra("link");
         imgTitle = intent.getStringExtra("title");
         imgDescription = intent.getStringExtra("description");
         imgSource = intent.getStringExtra("source");
         imgRating = intent.getStringExtra("rating");
         imgCategory = intent.getStringExtra("category");
-
-
-
+        new FileSize().execute(link);
 
         imgSourceTV.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,7 +162,23 @@ public class Main2Activity extends AppCompatActivity {
         });
 
 
-        Glide.with(this).load(thumb).into(imageView);
+        Glide.with(this)
+                .load(thumb)
+                .listener(new RequestListener<String, GlideDrawable>() {
+                    @Override
+                    public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+                        FirebaseCrash.report(new Exception(e.toString()));
+                        FirebaseCrash.log("imageURL: " + thumb);
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+
+                        return false;
+                    }
+                })
+                .into(imageView);
 
         Rqpr();
 
@@ -188,17 +208,73 @@ public class Main2Activity extends AppCompatActivity {
         SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
         String permission = sharedPref.getString("permission", "0");
 
-        if (permission.matches("permission_denied"))
-        {
+        if (permission.matches("permission_denied")) {
             button.setVisibility(View.INVISIBLE);
             button2.setVisibility(View.INVISIBLE);
-        }
-        else if (permission.matches("permission_granted"))
-        {
+        } else if (permission.matches("permission_granted")) {
             button.setVisibility(View.VISIBLE);
             button2.setVisibility(View.VISIBLE);
         }
 
+
+    }
+
+    class FileSize extends AsyncTask<String, String, String> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+        }
+
+        @Override
+        protected String doInBackground(String... f_url) {
+            int count;
+            try {
+                URL url = new URL(f_url[0]);
+                URLConnection connection = url.openConnection();
+                connection.connect();
+                // getting file length
+                lenghtOfFile = connection.getContentLength();
+                lenghtOfFile = lenghtOfFile/1024.0;
+
+
+
+
+            } catch (Exception e) {
+                Log.e("Error: ", e.getMessage());
+                FirebaseCrash.report(new Exception(e.getMessage()));
+            }
+
+            return null;
+        }
+
+        /**
+         * Updating progress bar
+         */
+        protected void onProgressUpdate(String... progress) {
+
+        }
+
+        /**
+         * After completing background task
+         * Dismiss the progress dialog
+         **/
+        @Override
+        protected void onPostExecute(String file_url) {
+            String size;
+            NumberFormat formatter = new DecimalFormat("#0.00");
+            if(lenghtOfFile>1024)
+            {
+                lenghtOfFile =lenghtOfFile/1024.0;
+                size = formatter.format(lenghtOfFile);
+                imageSizeTV.setText(size+" MegaBytes");
+            }
+            else{
+                size = formatter.format(lenghtOfFile);
+                imageSizeTV.setText(size+" KiloBytes");
+            }
+        }
 
     }
 
@@ -215,11 +291,9 @@ public class Main2Activity extends AppCompatActivity {
                 pDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if(mTask1!=null) {
+                        if (mTask1 != null) {
                             mTask1.cancel(true);
-                        }
-                        else if(mTask2!=null)
-                        {
+                        } else if (mTask2 != null) {
                             mTask2.cancel(true);
                         }
 
@@ -287,7 +361,7 @@ public class Main2Activity extends AppCompatActivity {
             bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, link);
             bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image");
             mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
-            mTask1= new DownloadFileFromURL().execute(link);
+            mTask1 = new DownloadFileFromURL().execute(link);
 
         }
 
@@ -310,7 +384,7 @@ public class Main2Activity extends AppCompatActivity {
             bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, link);
             bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image");
             mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
-            mTask2=new DownloadFileFromURL2().execute(link);
+            mTask2 = new DownloadFileFromURL2().execute(link);
         }
     }
 
@@ -454,7 +528,7 @@ public class Main2Activity extends AppCompatActivity {
         @Override
         protected void onProgressUpdate(String... progress) {
             // setting progress percentage
-           pDialog.setProgress(Integer.parseInt(progress[0]));
+            pDialog.setProgress(Integer.parseInt(progress[0]));
         }
 
         /**

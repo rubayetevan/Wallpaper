@@ -10,6 +10,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
@@ -35,6 +36,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.crash.FirebaseCrash;
 
@@ -55,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     NavigationView navigationView;
     private FirebaseAnalytics mFirebaseAnalytics;
     ProgressBar progressBar;
+    private Boolean exit = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,7 +108,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setItemIconTintList(null);
     }
 
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -111,7 +115,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+
         }
+
+
     }
 
     @Override
@@ -589,7 +596,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 @Override
                 public void onFailure(Call<Wallpaper> call, Throwable t) {
-                    FirebaseCrash.report(new Exception(t.getMessage()));
+                    FirebaseCrash.report(new Exception(t.toString()));
                     progressBar.setVisibility(View.GONE);
                 }
             });
@@ -633,7 +640,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 @Override
                 public void onFailure(Call<Wallpaper> call, Throwable t) {
-                    FirebaseCrash.report(new Exception(t.getMessage()));
+                    FirebaseCrash.report(new Exception(t.toString()));
                     progressBar.setVisibility(View.GONE);
                 }
             });
@@ -678,7 +685,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 @Override
                 public void onFailure(Call<Wallpaper> call, Throwable t) {
-                    FirebaseCrash.report(new Exception(t.getMessage()));
+                    FirebaseCrash.report(new Exception(t.toString()));
                     progressBar.setVisibility(View.GONE);
                 }
             });
@@ -722,6 +729,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Glide.with(context)
                     .load(thumb)
                     .override(200, 200)
+                    .listener(new RequestListener<String, GlideDrawable>() {
+                        @Override
+                        public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+                            FirebaseCrash.report(new Exception(e.toString()));
+                            FirebaseCrash.log("imageURL: "+thumb);
+                            return false;
+                        }
+
+                        @Override
+                        public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+
+                            return false;
+                        }
+                    })
                     .into(holder.img);
             holder.img.setOnClickListener(new View.OnClickListener() {
                 @TargetApi(Build.VERSION_CODES.LOLLIPOP)

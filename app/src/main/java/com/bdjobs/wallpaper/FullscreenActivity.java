@@ -10,8 +10,19 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.crash.FirebaseCrash;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -87,7 +98,8 @@ public class FullscreenActivity extends AppCompatActivity {
             return false;
         }
     };
-
+    private FirebaseAnalytics mFirebaseAnalytics;
+    TextView fileSizeTV;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,13 +108,35 @@ public class FullscreenActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
         mVisible = true;
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        mFirebaseAnalytics.setAnalyticsCollectionEnabled(true);
         mControlsView = findViewById(R.id.fullscreen_content_controls);
         mContentView = findViewById(R.id.fullscreen_content);
         ImageView imageView = (ImageView) findViewById(R.id.fullscreen_content);
-        Intent intent = getIntent();
-        String link = intent.getStringExtra("link");
+        fileSizeTV = (TextView) findViewById(R.id.fileSizeTV);
+        URL url = null;
 
-        Glide.with(this).load(link).into(imageView);
+        Intent intent = getIntent();
+        final String link = intent.getStringExtra("link");
+
+        Glide.with(this)
+                .load(link)
+                .listener(new RequestListener<String, GlideDrawable>() {
+                    @Override
+                    public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+                        FirebaseCrash.report(new Exception(e.toString()));
+                        FirebaseCrash.log("imageURL: "+link);
+
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+
+                        return false;
+                    }
+                })
+                .into(imageView);
 
 
         // Set up the user interaction to manually show or hide the system UI.
