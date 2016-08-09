@@ -48,6 +48,9 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.NativeExpressAdView;
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.crash.FirebaseCrash;
 
@@ -100,10 +103,15 @@ public class Main2Activity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
         state = false;
+
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         mFirebaseAnalytics.setAnalyticsCollectionEnabled(true);
+
         LayoutInflater factory = LayoutInflater.from(Main2Activity.this);
+
+
         View DialogView = factory.inflate(R.layout.layout, null);
+
         /*MobileAds.initialize(getApplicationContext(),"ca-app-pub-4958954259926855~1561957723");
         NativeExpressAdView adView = (NativeExpressAdView)findViewById(R.id.adView);
         AdRequest request = new AdRequest.Builder()
@@ -157,6 +165,10 @@ public class Main2Activity extends AppCompatActivity {
         imgSourceTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                GoogleAnalyticsData.tracker().send(new HitBuilders.EventBuilder(imgSource, "Full_Preview")
+                        .setLabel("Category")
+                        .build());
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(imgSource));
                 startActivity(i);
@@ -363,6 +375,9 @@ public class Main2Activity extends AppCompatActivity {
             bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, link);
             bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image");
             mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+            GoogleAnalyticsData.tracker().send(new HitBuilders.EventBuilder(link, "Download")
+                    .setLabel("Category")
+                    .build());
             mTask1 = new DownloadFileFromURL().execute(link);
 
         }
@@ -386,6 +401,9 @@ public class Main2Activity extends AppCompatActivity {
             bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, link);
             bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image");
             mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+            GoogleAnalyticsData.tracker().send(new HitBuilders.EventBuilder(link, "Set as Wallpaper")
+                    .setLabel("Category")
+                    .build());
             mTask2 = new DownloadFileFromURL2().execute(link);
         }
     }

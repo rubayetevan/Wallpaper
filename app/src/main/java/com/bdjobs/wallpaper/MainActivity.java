@@ -39,6 +39,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.crash.FirebaseCrash;
 
@@ -61,18 +64,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ProgressBar progressBar;
     private Boolean exit = false;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         mFirebaseAnalytics.setAnalyticsCollectionEnabled(true);
+
         categoryTV = (TextView) findViewById(R.id.categoryTV);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         featuredBTN = (Button) findViewById(R.id.featuredBTN);
         editorBTN = (Button) findViewById(R.id.editorBTN);
         popularBTN = (Button) findViewById(R.id.popularBTN);
         grid = (GridView) findViewById(R.id.grid);
+
+
+
 
         if (!isOnline(MainActivity.this)) {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
@@ -158,6 +167,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+
+
+
+
+
+
         if (!isOnline(MainActivity.this)) {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
             alertDialogBuilder.setMessage("NO Internet Connection! Please connect to internet and Try again.");
@@ -173,7 +188,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             alertDialog.show();
 
         } else {
-
+            GoogleAnalyticsData.tracker().send(new HitBuilders.EventBuilder(String.valueOf(item.getTitle()), "Open")
+                    .setLabel("Category")
+                    .build());
 
             // Handle navigation view item clicks here.
             int id = item.getItemId();
@@ -572,6 +589,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void getFeaturedWallpaper(View view) {
+        GoogleAnalyticsData.tracker().send(new HitBuilders.EventBuilder("Featured Wallpaper", "Open")
+                .setLabel("Category")
+                .build());
 
         navigationView.getMenu().getItem(selected_item).setChecked(false);
         categoryTV.setText("Featured Wallpaper");
@@ -616,6 +636,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void getEditorWallpaper(View view) {
+        GoogleAnalyticsData.tracker().send(new HitBuilders.EventBuilder("Editor Wallpaper", "Open")
+                .setLabel("Category")
+                .build());
         navigationView.getMenu().getItem(selected_item).setChecked(false);
         categoryTV.setText("Editor's Choice");
         featuredBTN.setTextColor(getResources().getColor(R.color.inactive));
@@ -660,6 +683,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void getPopularWallpaper(View view) {
+        GoogleAnalyticsData.tracker().send(new HitBuilders.EventBuilder("Popular Wallpaper", "Open")
+                .setLabel("Category")
+                .build());
         navigationView.getMenu().getItem(selected_item).setChecked(false);
         categoryTV.setText("Popular Wallpaper");
         featuredBTN.setTextColor(getResources().getColor(R.color.inactive));
@@ -776,9 +802,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     intent.putExtra("category", wallpapers.get(position).getCategory());
 
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        GoogleAnalyticsData.tracker().send(new HitBuilders.EventBuilder(thumb, "Preview")
+                                .setLabel("Category")
+                                .build());
                         Bundle bundle1 = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, holder.img, holder.img.getTransitionName()).toBundle();
                         startActivity(intent, bundle1);
                     } else {
+                        GoogleAnalyticsData.tracker().send(new HitBuilders.EventBuilder(thumb, "thumb_Preview")
+                                .setLabel("Category")
+                                .build());
 
                         startActivity(intent);
                     }
