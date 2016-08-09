@@ -90,6 +90,8 @@ public class Main2Activity extends AppCompatActivity {
     private AsyncTask<String, String, String> mTask1;
     private AsyncTask<String, String, String> mTask2;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
