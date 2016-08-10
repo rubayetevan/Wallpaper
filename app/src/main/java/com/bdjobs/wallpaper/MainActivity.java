@@ -566,6 +566,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void getServerData() {
+
+        GoogleAnalyticsData.tracker().send(new HitBuilders.EventBuilder("First Page", "Open")
+                .setLabel("Category")
+                .build());
         categoryTV.setText("Featured Wallpaper");
         featuredBTN.setTextColor(getResources().getColor(R.color.active));
         editorBTN.setTextColor(getResources().getColor(R.color.inactive));
@@ -803,13 +807,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                         GoogleAnalyticsData.tracker().send(new HitBuilders.EventBuilder(thumb, "Preview")
-                                .setLabel("Category")
+                                .setLabel("Image")
                                 .build());
                         Bundle bundle1 = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, holder.img, holder.img.getTransitionName()).toBundle();
                         startActivity(intent, bundle1);
                     } else {
                         GoogleAnalyticsData.tracker().send(new HitBuilders.EventBuilder(thumb, "thumb_Preview")
-                                .setLabel("Category")
+                                .setLabel("Image")
                                 .build());
 
                         startActivity(intent);

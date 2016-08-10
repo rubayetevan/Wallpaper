@@ -167,7 +167,7 @@ public class Main2Activity extends AppCompatActivity {
             public void onClick(View view) {
 
                 GoogleAnalyticsData.tracker().send(new HitBuilders.EventBuilder(imgSource, "Full_Preview")
-                        .setLabel("Category")
+                        .setLabel("Image")
                         .build());
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(imgSource));
@@ -418,6 +418,9 @@ public class Main2Activity extends AppCompatActivity {
 
                     // permission was granted, yay! Do the
                     // contacts-related task you need to do.
+                    GoogleAnalyticsData.tracker().send(new HitBuilders.EventBuilder("Permission", "Granted")
+                            .setLabel("Category")
+                            .build());
                     SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPref.edit();
                     editor.putString("permission", "permission_granted");
@@ -426,6 +429,9 @@ public class Main2Activity extends AppCompatActivity {
                     button2.setVisibility(View.VISIBLE);
 
                 } else {
+                    GoogleAnalyticsData.tracker().send(new HitBuilders.EventBuilder("Permission", "Denied")
+                            .setLabel("Category")
+                            .build());
                     FirebaseCrash.log("permission_denied");
                     SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPref.edit();
