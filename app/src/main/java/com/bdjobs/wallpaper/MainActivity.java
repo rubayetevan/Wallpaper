@@ -397,7 +397,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         FirebaseCrash.report(new Exception(t.getMessage()));
                     }
                 });
-            } else if (id == R.id.funny) {
+            } /*else if (id == R.id.funny) {
                 selected_item = 10;
                 categoryTV.setText("Funny Wallpaper");
                 wallpapers.clear();
@@ -417,7 +417,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         FirebaseCrash.report(new Exception(t.getMessage()));
                     }
                 });
-            } else if (id == R.id.games) {
+            }*/ else if (id == R.id.games) {
                 selected_item = 11;
                 categoryTV.setText("Games Wallpaper");
                 wallpapers.clear();
@@ -437,7 +437,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         FirebaseCrash.report(new Exception(t.getMessage()));
                     }
                 });
-            } else if (id == R.id.inspiraton) {
+            } /*else if (id == R.id.inspiraton) {
                 selected_item = 12;
                 categoryTV.setText("Inspirational Wallpaper");
                 wallpapers.clear();
@@ -457,7 +457,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         FirebaseCrash.report(new Exception(t.getMessage()));
                     }
                 });
-            } else if (id == R.id.landscape) {
+            }*/ /*else if (id == R.id.landscape) {
                 selected_item = 13;
                 categoryTV.setText("Landscape Wallpaper");
                 wallpapers.clear();
@@ -477,7 +477,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         FirebaseCrash.report(new Exception(t.getMessage()));
                     }
                 });
-            } else if (id == R.id.macro) {
+            }*/ else if (id == R.id.macro) {
                 selected_item = 14;
                 categoryTV.setText("Macro Wallpaper");
                 wallpapers.clear();
@@ -497,7 +497,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         FirebaseCrash.report(new Exception(t.getMessage()));
                     }
                 });
-            } else if (id == R.id.minimal) {
+            } /*else if (id == R.id.minimal) {
                 selected_item = 15;
                 categoryTV.setText("Minimal Wallpaper");
                 wallpapers.clear();
@@ -517,7 +517,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         FirebaseCrash.report(new Exception(t.getMessage()));
                     }
                 });
-            } else if (id == R.id.nature) {
+            }*/ else if (id == R.id.nature) {
                 selected_item = 16;
                 categoryTV.setText("Nature Wallpaper");
                 wallpapers.clear();

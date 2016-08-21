@@ -280,13 +280,28 @@ public class Main2Activity extends AppCompatActivity {
             NumberFormat formatter = new DecimalFormat("#0.00");
             if(lenghtOfFile>1024)
             {
-                lenghtOfFile =lenghtOfFile/1024.0;
-                size = formatter.format(lenghtOfFile);
-                imageSizeTV.setText(size+" MegaBytes");
+                try {
+                    lenghtOfFile =lenghtOfFile/1024.0;
+                    size = formatter.format(lenghtOfFile);
+                    imageSizeTV.setText(size+" MegaBytes");
+                }
+                catch (Exception e)
+                {
+                    FirebaseCrash.log(e.toString());
+                }
+
             }
             else{
-                size = formatter.format(lenghtOfFile);
-                imageSizeTV.setText(size+" KiloBytes");
+
+                try {
+                    size = formatter.format(lenghtOfFile);
+                    imageSizeTV.setText(size+" KiloBytes");
+                }
+                catch (Exception e)
+                {
+                    FirebaseCrash.log(e.toString());
+                }
+
             }
         }
 

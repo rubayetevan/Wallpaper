@@ -44,30 +44,30 @@
             android:id="@+id/food"
             android:icon="@drawable/food"
             android:title="Food" />
-        <item
+       <!-- <item
             android:id="@+id/funny"
             android:icon="@drawable/funny"
-            android:title="Funny" />
+            android:title="Funny" />-->
         <item
             android:id="@+id/games"
             android:icon="@drawable/games"
             android:title="Games" />
-        <item
+       <!-- <item
             android:id="@+id/inspiraton"
             android:icon="@drawable/inspiraton"
-            android:title="Inspirational" />
-        <item
+            android:title="Inspirational" />-->
+       <!-- <item
             android:id="@+id/landscape"
             android:icon="@drawable/landscape"
-            android:title="Landscape Photos" />
+            android:title="Landscape Photos" />-->
         <item
             android:id="@+id/macro"
             android:icon="@drawable/macro"
             android:title="Macro" />
-        <item
+      <!--  <item
             android:id="@+id/minimal"
             android:icon="@drawable/minimal"
-            android:title="Minimal" />
+            android:title="Minimal" />-->
 
         <item
             android:id="@+id/nature"
