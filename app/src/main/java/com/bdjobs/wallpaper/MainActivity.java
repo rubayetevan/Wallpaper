@@ -418,7 +418,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     }
                 });
             }*/ else if (id == R.id.games) {
-                selected_item = 11;
+                selected_item = 10;
                 categoryTV.setText("Games Wallpaper");
                 wallpapers.clear();
                 grid.setVisibility(View.GONE);
@@ -478,7 +478,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     }
                 });
             }*/ else if (id == R.id.macro) {
-                selected_item = 14;
+                selected_item = 11;
                 categoryTV.setText("Macro Wallpaper");
                 wallpapers.clear();
                 grid.setVisibility(View.GONE);
@@ -518,7 +518,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     }
                 });
             }*/ else if (id == R.id.nature) {
-                selected_item = 16;
+                selected_item = 12;
                 categoryTV.setText("Nature Wallpaper");
                 wallpapers.clear();
                 grid.setVisibility(View.GONE);
@@ -538,7 +538,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     }
                 });
             } else if (id == R.id.space) {
-                selected_item = 17;
+                selected_item = 13;
                 categoryTV.setText("Space Wallpaper");
                 wallpapers.clear();
                 grid.setVisibility(View.GONE);
