@@ -16,7 +16,7 @@ public interface DownloadAndView {
     String baseURL = "http://errorstation.com/admin/";
 
     @GET("viewdownload.php?")
-    Call<DorV> CountDownloadOrView(@Query("pid") String pid, @Query("action") String action, @Query("user") String user, @Query("device") String IMIE);
+    Call<DorV> CountDownloadOrView(@Query("pid") String pid, @Query("action") String action);
 
     class Factory {
         public static DownloadAndView downloadAndView;

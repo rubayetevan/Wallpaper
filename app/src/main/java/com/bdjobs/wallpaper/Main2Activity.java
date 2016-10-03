@@ -67,6 +67,10 @@ import java.text.NumberFormat;
 import java.util.Random;
 import java.util.concurrent.ExecutionException;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class Main2Activity extends AppCompatActivity {
     ImageView imageView;
     String link, imgTitle, imgDescription, imgSource, imgRating, imgCategory, thumb;
@@ -88,7 +92,7 @@ public class Main2Activity extends AppCompatActivity {
     // Progress dialog type (0 - for Horizontal progress bar)
     public static final int progress_bar_type = 0;
     public static final int dialog_bar_type = 1;
-
+    String pid;
     final String PERMISSION = Manifest.permission.WRITE_EXTERNAL_STORAGE;
     private AsyncTask<String, String, String> mTask1;
     private AsyncTask<String, String, String> mTask2;
@@ -159,7 +163,21 @@ public class Main2Activity extends AppCompatActivity {
         imgSource = intent.getStringExtra("source");
         imgRating = intent.getStringExtra("rating");
         imgCategory = intent.getStringExtra("category");
+        pid=intent.getStringExtra("picID");
         new FileSize().execute(link);
+        DownloadAndView.Factory.getInstance().CountDownloadOrView(pid,"v").enqueue(new Callback<DorV>() {
+            @Override
+            public void onResponse(Call<DorV> call, Response<DorV> response) {
+
+
+            }
+
+            @Override
+            public void onFailure(Call<DorV> call, Throwable t) {
+
+
+            }
+        });
 
         imgSourceTV.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -392,6 +410,20 @@ public class Main2Activity extends AppCompatActivity {
             GoogleAnalyticsData.tracker().send(new HitBuilders.EventBuilder(link, "Download")
                     .setLabel("Category")
                     .build());
+            DownloadAndView.Factory.getInstance().CountDownloadOrView(pid,"d").enqueue(new Callback<DorV>() {
+                @Override
+                public void onResponse(Call<DorV> call, Response<DorV> response) {
+
+
+                }
+
+                @Override
+                public void onFailure(Call<DorV> call, Throwable t) {
+
+
+                }
+            });
+
             mTask1 = new DownloadFileFromURL().execute(link);
 
         }
@@ -410,6 +442,7 @@ public class Main2Activity extends AppCompatActivity {
             chooserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             getApplicationContext().startActivity(chooserIntent);
         } else if (state == false) {
+
             Bundle bundle = new Bundle();
             bundle.putString(FirebaseAnalytics.Param.ITEM_ID, imgDescription);
             bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, link);
@@ -418,6 +451,19 @@ public class Main2Activity extends AppCompatActivity {
             GoogleAnalyticsData.tracker().send(new HitBuilders.EventBuilder(link, "Set as Wallpaper")
                     .setLabel("Category")
                     .build());
+            DownloadAndView.Factory.getInstance().CountDownloadOrView(pid,"d").enqueue(new Callback<DorV>() {
+                @Override
+                public void onResponse(Call<DorV> call, Response<DorV> response) {
+
+
+                }
+
+                @Override
+                public void onFailure(Call<DorV> call, Throwable t) {
+
+
+                }
+            });
             mTask2 = new DownloadFileFromURL2().execute(link);
         }
     }
@@ -589,6 +635,7 @@ public class Main2Activity extends AppCompatActivity {
     }
 
     class DownloadFileFromURL2 extends AsyncTask<String, String, String> {
+
 
         @Override
         protected void onPreExecute() {

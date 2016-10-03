@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private FirebaseAnalytics mFirebaseAnalytics;
     ProgressBar progressBar;
     private Boolean exit = false;
-    String pid="0";
+
 
 
     @Override
@@ -792,8 +792,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 @Override
                 public void onClick(View v) {
                     final Intent intent = new Intent(context, Main2Activity.class);
-                    pid = wallpapers.get(position).getPicid();
-                    Toast.makeText(MainActivity.this, pid, Toast.LENGTH_SHORT).show();
+
+
                     Bundle bundle = new Bundle();
                     bundle.putString(FirebaseAnalytics.Param.ITEM_ID, wallpapers.get(position).getCategory());
                     bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, thumb);
@@ -806,37 +806,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     intent.putExtra("description", wallpapers.get(position).getDescription());
                     intent.putExtra("source", wallpapers.get(position).getSource());
                     intent.putExtra("category", wallpapers.get(position).getCategory());
+                    intent.putExtra("picID",wallpapers.get(position).getPicid());
 
 
 
-                    DownloadAndView.Factory.getInstance().CountDownloadOrView(pid,"v","evan","123456789").enqueue(new Callback<DorV>() {
-                        @Override
-                        public void onResponse(Call<DorV> call, Response<DorV> response) {
-                            Toast.makeText(MainActivity.this, response.body().getSuccess(), Toast.LENGTH_SHORT).show();
-
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                                GoogleAnalyticsData.tracker().send(new HitBuilders.EventBuilder(thumb, "Preview")
-                                        .setLabel("Image")
-                                        .build());
-                                Bundle bundle1 = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, holder.img, holder.img.getTransitionName()).toBundle();
-                                startActivity(intent, bundle1);
-                            } else {
-                                GoogleAnalyticsData.tracker().send(new HitBuilders.EventBuilder(thumb, "thumb_Preview")
-                                        .setLabel("Image")
-                                        .build());
-
-                                startActivity(intent);
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<DorV> call, Throwable t) {
-                            Toast.makeText(context, t.toString(), Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
 
 
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        GoogleAnalyticsData.tracker().send(new HitBuilders.EventBuilder(thumb, "Preview")
+                                .setLabel("Image")
+                                .build());
+                        Bundle bundle1 = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, holder.img, holder.img.getTransitionName()).toBundle();
+                        startActivity(intent, bundle1);
+                    } else {
+                        GoogleAnalyticsData.tracker().send(new HitBuilders.EventBuilder(thumb, "thumb_Preview")
+                                .setLabel("Image")
+                                .build());
+
+                        startActivity(intent);
+                    }
 
 
 
