@@ -9,20 +9,20 @@ import retrofit2.http.GET;
  * Created by Rubayet on 24-May-16.
  */
 public interface API {
-    String baseURL = "http://appstudio.creativemine.net/hd_wallpaper_pro/API/";
+    //String baseURL = "http://appstudio.creativemine.net/hd_wallpaper_pro/API/";
 
-   // String baseURL = "http://errorstation.com/hd_wallpaper_pro/APIv2/";
+    String baseURL = "http://errorstation.com/hd_wallpaper_pro/APIv2/";
 
-    @GET("FetauredWallpaper.json")
+   /* @GET("FetauredWallpaper.json")
+    Call<Wallpaper> getFeaturedWallpaper();*/
+
+    @GET("Featured.json")
     Call<Wallpaper> getFeaturedWallpaper();
 
-   /* @GET("Featured.json")
-    Call<Wallpaper> getFeaturedWallpaper();
-*/
     @GET("AbstractWallpaper.json")
     Call<Wallpaper> getAbstractWallpaper();
 
-    @GET("Animals.json")
+    @GET("Animal.json")
     Call<Wallpaper> getAnimalandBirdsWallpaper();
 
     @GET("Architecture.json")

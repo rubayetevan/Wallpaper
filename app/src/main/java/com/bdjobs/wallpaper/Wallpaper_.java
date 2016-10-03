@@ -4,9 +4,11 @@ package com.bdjobs.wallpaper;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
 public class Wallpaper_ {
 
+    @SerializedName("picid")
+    @Expose
+    private String picid;
     @SerializedName("thumb")
     @Expose
     private String thumb;
@@ -28,6 +30,30 @@ public class Wallpaper_ {
     @SerializedName("category")
     @Expose
     private String category;
+    @SerializedName("views")
+    @Expose
+    private String views;
+    @SerializedName("downloads")
+    @Expose
+    private String downloads;
+
+    /**
+     * 
+     * @return
+     *     The picid
+     */
+    public String getPicid() {
+        return picid;
+    }
+
+    /**
+     * 
+     * @param picid
+     *     The picid
+     */
+    public void setPicid(String picid) {
+        this.picid = picid;
+    }
 
     /**
      * 
@@ -153,6 +179,42 @@ public class Wallpaper_ {
      */
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    /**
+     * 
+     * @return
+     *     The views
+     */
+    public String getViews() {
+        return views;
+    }
+
+    /**
+     * 
+     * @param views
+     *     The views
+     */
+    public void setViews(String views) {
+        this.views = views;
+    }
+
+    /**
+     * 
+     * @return
+     *     The downloads
+     */
+    public String getDownloads() {
+        return downloads;
+    }
+
+    /**
+     * 
+     * @param downloads
+     *     The downloads
+     */
+    public void setDownloads(String downloads) {
+        this.downloads = downloads;
     }
 
 }
